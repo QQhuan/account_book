@@ -4,17 +4,20 @@
  * Install the Eslint extension before using this feature.
  */
 module.exports = {
+  root: true,
+  parser: 'babel-eslint',
   env: {
     es6: true,
     browser: true,
     node: true,
+    commonjs: true
   },
   ecmaFeatures: {
-    modules: true,
+    modules: true
   },
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   globals: {
     wx: true,
@@ -24,8 +27,19 @@ module.exports = {
     getApp: true,
     Component: true,
     requirePlugin: true,
-    requireMiniProgram: true,
+    requireMiniProgram: true
   },
   // extends: 'eslint:recommended',
-  rules: {},
+  rules: {
+    'no-debugger': 2,
+    'no-unused-vars': 1,
+    'no-var': 0,
+    'no-param-reassign': 0,
+    'no-irregular-whitespace': 0,
+    'no-useless-catch': 1,
+    'max-params': ['error', 3],
+    'array-callback-return': 1,
+    eqeqeq: 0,
+    indent: ['error', 2, { SwitchCase: 1 }]
+  }
 }

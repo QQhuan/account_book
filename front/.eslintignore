@@ -1,0 +1,5 @@
+# .eslintignore，忽略语法检查的文件
+
+*.min.js
+typings
+node_modules
