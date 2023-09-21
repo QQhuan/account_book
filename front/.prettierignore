@@ -18,3 +18,9 @@ package-lock.json
 ## Built-files
 .cache
 dist
+.DS_Store
+node_modules
+dist
+dist-ssr
+**/*.svg
+**/*.sh

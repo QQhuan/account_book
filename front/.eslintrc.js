@@ -5,7 +5,8 @@
  */
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint'],
   env: {
     es6: true,
     browser: true,
@@ -16,7 +17,7 @@ module.exports = {
     modules: true
   },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module'
   },
   globals: {
@@ -30,6 +31,7 @@ module.exports = {
     requireMiniProgram: true
   },
   // extends: 'eslint:recommended',
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   rules: {
     'no-debugger': 2,
     'no-unused-vars': 1,

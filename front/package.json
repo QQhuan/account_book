@@ -16,16 +16,19 @@
   },
   "lint-staged": {
     "*.{js,wxs,sjs,ts}": [
-      "prettier --config .prettierrc.js --write",
-      "eslint --fix --ext .js,.ts"
+      "prettier --config .prettierrc.js --write"
     ],
-    "*.{json,wxml,axml,css,wxss,acss,wxml,axml,less,scss}": "prettier --config .prettierrc.js --write"
+    "*.{json,wxml,axml,css,wxss,acss,wxml,axml,less,scss}": "prettier --config .prettierrc.js --write",
+    "path/to/miniprogram/miniprogram_npm/folder/**/*": "echo Ignored folder"
   },
   "keywords": [],
   "author": "",
   "license": "",
   "dependencies": {
-    "@vant/weapp": "^1.11.0"
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@vant/weapp": "^1.11.0",
+    "eslint-plugin-typescript": "^0.14.0",
+    "typescript-eslint": "^0.0.1-alpha.0"
   },
   "devDependencies": {
     "babel-eslint": "10.0.3",
