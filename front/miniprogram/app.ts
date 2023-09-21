@@ -1,6 +1,10 @@
 // app.ts
+import * as myFun from './utils/util'
+// @ts-ignore
 App<IAppOption>({
-  globalData: {},
+  globalData: {
+    active: 0
+  },
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []
@@ -14,5 +18,6 @@ App<IAppOption>({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
-  }
+  },
+  ...myFun
 })

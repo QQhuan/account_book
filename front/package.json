@@ -19,7 +19,7 @@
       "prettier --config .prettierrc.js --write"
     ],
     "*.{json,wxml,axml,css,wxss,acss,wxml,axml,less,scss}": "prettier --config .prettierrc.js --write",
-    "path/to/miniprogram/miniprogram_npm/folder/**/*": "echo Ignored folder"
+    "path/to/miniprogram/miniprogram_npm/folder/**/*,path/to/node_modules/folder/**/*": "echo Ignored folder"
   },
   "keywords": [],
   "author": "",

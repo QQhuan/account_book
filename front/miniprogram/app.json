@@ -1,14 +1,42 @@
 {
   "entryPagePath": "pages/index/index",
-  "pages": ["pages/index/index", "pages/logs/logs"],
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/detail/detail",
+    "pages/statistic/statistic",
+    "pages/userinfo/userinfo"
+  ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#07c160",
+    "navigationBarBackgroundColor": "#52bd83",
     "navigationBarTitleText": "记账本",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/detail/detail",
+        "text": "详细"
+      },
+      {
+        "pagePath": "pages/statistic/statistic",
+        "text": "统计"
+      },
+      {
+        "pagePath": "pages/userinfo/userinfo",
+        "text": "我的"
+      }
+    ]
   }
 }

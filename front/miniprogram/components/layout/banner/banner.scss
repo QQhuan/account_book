@@ -1,1 +1,9 @@
 /* components/layout/banner/banner.wxss */
+.banner {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 180rpx;
+  background: linear-gradient(to bottom, #52bd83, #3eb575);
+}

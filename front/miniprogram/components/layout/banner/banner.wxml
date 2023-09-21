@@ -1,2 +1,2 @@
 <!--components/layout/banner/banner.wxml-->
-<text>components/layout/banner/banner.wxml</text>
+<view class="banner"> </view>
