@@ -1,6 +1,21 @@
 # account_book
 微信记账小程序
 
+# UI组件库&图表库
+
+[vantweapp文档](https://youzan.github.io/vant-weapp/#/home)
+
+[echarts-for-wexin文档](https://echarts.apache.org/handbook/zh/how-to/cross-platform/wechat-app/)
+
+[github地址](https://github.com/ecomfe/echarts-for-weixin)
+
+> 注：暂未安装echarts
+
+# 参考UI
+
+1. 微信记账本
+2. 鲨鱼记账本
+
 # Git提交的信息
 
 提交希望按照下面的规范来提交信息，具体也可参考angular的规范
