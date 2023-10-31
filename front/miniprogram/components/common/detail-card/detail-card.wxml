@@ -1,0 +1,5 @@
+<!--components/common/detail-card/detail-card.wxml-->
+<van-cell-group class="main">
+  <van-cell title="购物" value="-19.5" />
+  <van-cell title="餐饮" value="哈哈哈" label="描述信息" border="{{ false }}" />
+</van-cell-group>
