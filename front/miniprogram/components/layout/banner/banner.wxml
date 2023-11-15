@@ -1,2 +1,19 @@
 <!--components/layout/banner/banner.wxml-->
-<view class="banner"> </view>
+<view class="banner">
+  <view class="header_item header_date">
+    <text>{{selectYear}}年</text>
+    <text class="header_date_month">{{selectMonth}}月</text>
+    <van-cell title="{{date}}" is-link bind:click="showPopup" />
+    <van-popup show="{{ show }}" z-index="9999" round position="bottom" custom-style="height: 50%" bind:close="onClose">
+      <van-datetime-picker type="year-month" value="{{ currentDate }}" min-date="{{ minDate }}" bind:input="onInput" />
+    </van-popup>
+  </view>
+  <view class="header_item">
+    <text>收入</text>
+    <text class="last">{{income}}</text>
+  </view>
+  <view class="header_item">
+    <text>支出</text>
+    <text class="last">{{outcome}}</text>
+  </view>
+</view>
