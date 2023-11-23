@@ -1,23 +1,29 @@
 {
-  "entryPagePath": "pages/index/index",
+  "entryPagePath": "pages/login/login",
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/detail/detail",
     "pages/statistic/statistic",
-    "pages/userinfo/userinfo"
+    "pages/userinfo/userinfo",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#52bd83",
-    "navigationBarTitleText": "记账本",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#5064eb",
+    "navigationBarTitleText": "随手记",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-popup": "@vant/weapp/popup/index",
     "van-tabbar": "@vant/weapp/tabbar/index",
-    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
   },
   "tabBar": {
     "custom": true,

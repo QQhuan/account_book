@@ -1,2 +1,22 @@
 <!--pages/userinfo/userinfo.wxml-->
-<view> </view>
+<view class="top-bg">
+  <van-row style="height: max-content;">
+    <van-col span="4">
+      <!-- 头像 -->
+      <van-image round width="5rem" height="5rem" style="padding: 0.8rem;" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+    </van-col>
+    <van-col span="10" offset="5" class="userinfo-box">
+      <view class="username">我的名字</view>
+    </van-col>
+  </van-row>
+  <view class="total">
+    <total />
+  </view>
+</view>
+<view class="main-content">
+  <view>
+    <van-cell title="用户反馈" icon="envelop-o" is-link />
+    <van-cell title="关于我们" icon="eye-o" is-link />
+    <van-cell title="设置" is-link icon="setting-o" />
+  </view>
+</view>
