@@ -16,11 +16,10 @@ Component({
   lifetimes: {
     ready: function () {
       // 绑上全局变量
-      let app = getApp()
-      const index = app.globalData.active
-      this.setData({ active: index })
-      // this.onChange({detail:0})
-    }
+      //let app = getApp()
+      //this.setData({ active: 0 })
+      //this.onChange({detail:0})
+    },
   },
   /**
    * 组件的方法列表
@@ -37,18 +36,18 @@ Component({
       app.switchTab(`/pages/${url}/${url}`)
       //}
     },
-    isTargetPage() {
-      // 获取当前页面路由路径，在login返回false，代表app.switchTab不执行
-      const pages = getCurrentPages()
-      const currentPage = pages[pages.length - 1]
-      const currentRoute = currentPage.route.split('/')[2]
-      console.log(currentPage.route)
-      if (currentRoute == 'login') {
-        return false
-      } else {
-        return true
-      }
-    },
+    // isTargetPage() {
+    //   // 获取当前页面路由路径，在login返回false，代表app.switchTab不执行
+    //   const pages = getCurrentPages()
+    //   const currentPage = pages[pages.length - 1]
+    //   const currentRoute = currentPage.route.split('/')[2]
+    //   console.log(currentPage.route)
+    //   if (currentRoute == 'login') {
+    //     return false
+    //   } else {
+    //     return true
+    //   }
+    // },
     init() {
       const page = getCurrentPages().pop()
       const route = (page ? page.route.split('?')[0] : '').split('/')[1]

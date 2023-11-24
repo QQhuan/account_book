@@ -19,6 +19,7 @@ Component({
       let app = getApp()
       const index = app.globalData.active
       this.setData({ active: index })
+      this.onChange({detail: 0})
     }
   },
   /**
