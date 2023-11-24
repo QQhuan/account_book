@@ -1,35 +1,38 @@
 server:
-  port: 6666   #  ÅäÖÃÆô¶¯¶Ë¿ÚºÅ
+  port: 6666   #  é…ç½®å¯åŠ¨ç«¯å£å·
+  servlet:
+    context-path: /account_book
 
-spring: #springbootµÄÅäÖÃ
-  datasource: #¶¨ÒåÊı¾İÔ´
-    #127.0.0.1Îª±¾»ú²âÊÔµÄip£¬3306ÊÇmysqlµÄ¶Ë¿ÚºÅ¡£serverTimezoneÊÇ¶¨ÒåÊ±Çø£¬ÕÕ³­¾ÍºÃ£¬mysql¸ß°æ±¾ĞèÒª¶¨ÒåÕâĞ©¶«Î÷
-    #useSSLÒ²ÊÇÄ³Ğ©¸ß°æ±¾mysqlĞèÒªÎÊÓĞÃ»ÓĞÓÃSSLÁ¬½Ó
+
+spring: #springbootçš„é…ç½®
+  datasource: #å®šä¹‰æ•°æ®æº
+    #serverTimezoneæ˜¯å®šä¹‰æ—¶åŒºï¼Œç…§æŠ„å°±å¥½ï¼Œmysqlé«˜ç‰ˆæœ¬éœ€è¦å®šä¹‰è¿™äº›ä¸œè¥¿
+    #useSSLä¹Ÿæ˜¯æŸäº›é«˜ç‰ˆæœ¬mysqléœ€è¦é—®æœ‰æ²¡æœ‰ç”¨SSLè¿æ¥
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/account_book?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
-    username: root  #Êı¾İ¿âÓÃ»§Ãû£¬rootÎª¹ÜÀíÔ±
-    password: 123456 #¸ÃÊı¾İ¿âÓÃ»§µÄÃÜÂë
-    # Ê¹ÓÃdruidÊı¾İÔ´
+    url: jdbc:mysql://8.130.98.135:3306/account_book?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root  #æ•°æ®åº“ç”¨æˆ·åï¼Œrootä¸ºç®¡ç†å‘˜
+    password: 123456 #è¯¥æ•°æ®åº“ç”¨æˆ·çš„å¯†ç 
+    # ä½¿ç”¨druidæ•°æ®æº
     type: com.alibaba.druid.pool.DruidDataSource
 
 
-# mybatis-plusÏà¹ØÅäÖÃ
+# mybatis-plusç›¸å…³é…ç½®
 mybatis-plus:
-  # xmlÉ¨Ãè£¬¶à¸öÄ¿Â¼ÓÃ¶ººÅ»òÕß·ÖºÅ·Ö¸ô£¨¸æËß Mapper Ëù¶ÔÓ¦µÄ XML ÎÄ¼şÎ»ÖÃ£©
+  # xmlæ‰«æï¼Œå¤šä¸ªç›®å½•ç”¨é€—å·æˆ–è€…åˆ†å·åˆ†éš”ï¼ˆå‘Šè¯‰ Mapper æ‰€å¯¹åº”çš„ XML æ–‡ä»¶ä½ç½®ï¼‰
   mapper-locations: classpath:mapper/*.xml
-  # ÒÔÏÂÅäÖÃ¾ùÓĞÄ¬ÈÏÖµ,¿ÉÒÔ²»ÉèÖÃ
+  # ä»¥ä¸‹é…ç½®å‡æœ‰é»˜è®¤å€¼,å¯ä»¥ä¸è®¾ç½®
   global-config:
     db-config:
-      #Ö÷¼üÀàĞÍ AUTO:"Êı¾İ¿âID×ÔÔö" INPUT:"ÓÃ»§ÊäÈëID",ID_WORKER:"È«¾ÖÎ¨Ò»ID (Êı×ÖÀàĞÍÎ¨Ò»ID)", UUID:"È«¾ÖÎ¨Ò»ID UUID";
+      #ä¸»é”®ç±»å‹ AUTO:"æ•°æ®åº“IDè‡ªå¢" INPUT:"ç”¨æˆ·è¾“å…¥ID",ID_WORKER:"å…¨å±€å”¯ä¸€ID (æ•°å­—ç±»å‹å”¯ä¸€ID)", UUID:"å…¨å±€å”¯ä¸€ID UUID";
       id-type: auto
-      #×Ö¶Î²ßÂÔ IGNORED:"ºöÂÔÅĞ¶Ï"  NOT_NULL:"·Ç NULL ÅĞ¶Ï")  NOT_EMPTY:"·Ç¿ÕÅĞ¶Ï"
-      field-strategy: NOT_EMPTY
-      #Êı¾İ¿âÀàĞÍ
-      db-type: MYSQL
+      #å­—æ®µç­–ç•¥ IGNORED:"å¿½ç•¥åˆ¤æ–­"  NOT_NULL:"é NULL åˆ¤æ–­")  NOT_EMPTY:"éç©ºåˆ¤æ–­"
+      #field-strategy: NOT_EMPTY
+      #æ•°æ®åº“ç±»å‹
+      #db-type: MYSQL
   configuration:
-    # ÊÇ·ñ¿ªÆô×Ô¶¯ÍÕ·åÃüÃû¹æÔòÓ³Éä:´ÓÊı¾İ¿âÁĞÃûµ½JavaÊôĞÔÍÕ·åÃüÃûµÄÀàËÆÓ³Éä
+    # æ˜¯å¦å¼€å¯è‡ªåŠ¨é©¼å³°å‘½åè§„åˆ™æ˜ å°„:ä»æ•°æ®åº“åˆ—ååˆ°Javaå±æ€§é©¼å³°å‘½åçš„ç±»ä¼¼æ˜ å°„
     map-underscore-to-camel-case: true
-    # Èç¹û²éÑ¯½á¹ûÖĞ°üº¬¿ÕÖµµÄÁĞ£¬Ôò MyBatis ÔÚÓ³ÉäµÄÊ±ºò£¬²»»áÓ³ÉäÕâ¸ö×Ö¶Î
+    # å¦‚æœæŸ¥è¯¢ç»“æœä¸­åŒ…å«ç©ºå€¼çš„åˆ—ï¼Œåˆ™ MyBatis åœ¨æ˜ å°„çš„æ—¶å€™ï¼Œä¸ä¼šæ˜ å°„è¿™ä¸ªå­—æ®µ
     call-setters-on-nulls: true
-    # Õâ¸öÅäÖÃ»á½«Ö´ĞĞµÄsql´òÓ¡³öÀ´£¬ÔÚ¿ª·¢»ò²âÊÔµÄÊ±ºò¿ÉÒÔÓÃ
+    # è¿™ä¸ªé…ç½®ä¼šå°†æ‰§è¡Œçš„sqlæ‰“å°å‡ºæ¥ï¼Œåœ¨å¼€å‘æˆ–æµ‹è¯•çš„æ—¶å€™å¯ä»¥ç”¨
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
