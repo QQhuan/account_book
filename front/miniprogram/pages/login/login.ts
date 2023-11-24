@@ -1,4 +1,5 @@
 // pages/login/login.ts
+// import loginApi from '../../http/login/index'
 Page({
   /**
    * 页面的初始数据
@@ -17,9 +18,63 @@ Page({
     }
   },
   user_login: function () {
-    wx.redirectTo({
-      url: '../index/index'
-    })
+    if(this.data.cur == 0) {
+      // 测试请求
+      wx.cloud.callFunction({
+        name: 'login', // 你的云函数名称
+        data: {
+          url: 'http://8.130.98.135:6666/account_book/user/login',
+          info: "123456 123465"
+        }
+      }).then( (res)=>{
+      // 请求成功
+        console.log(res);
+        wx.redirectTo({
+          url: '../index/index'
+        })
+      }).catch( (res)=> {
+      // 请求失败
+        console.log(res);
+      })
+    } else {
+      // 注册请求
+      wx.cloud.callFunction({
+        name: 'register', // 你的云函数名称
+        data: {
+          url: 'http://8.130.98.135:6666/account_book/user/register',
+          data: JSON.stringify({
+            userId: '',
+            userName: '',
+            wechatId: '',
+            gender: '',
+            introduction: '',
+            headPortraitPath: '',
+            totalDate: 0,
+            totalAmount: 0,
+            tel: '15521154941', password: '111'})
+        }
+      }).then( (res)=>{
+      //请求成功
+        console.log(res);
+      }).catch( (res)=> {
+      //请求失败
+        console.log(res);
+      })
+    }
+    	 
+
+      // wx.request({
+      //   url: 'http://8.130.98.135:6666/account_book/user/login', // 仅为示例，并非真实的接口地址
+      //   data: "123456 123456",
+      //   method: 'POST',
+      //   header: {
+      //     'content-type': 'application/json' // 默认值
+      //   },
+      //   success (res) {
+      //     console.log(res.data)
+      //   }
+      // })
+  
   },
   /**
    * 生命周期函数--监听页面加载

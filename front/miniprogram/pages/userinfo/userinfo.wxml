@@ -18,5 +18,8 @@
     <van-cell title="用户反馈" icon="envelop-o" is-link />
     <van-cell title="关于我们" icon="eye-o" is-link />
     <van-cell title="设置" is-link icon="setting-o" />
+    <van-cell title="退出" is-link icon="revoke"
+      link-type="redirectTo"
+      url="/pages/login/login"/>
   </view>
 </view>

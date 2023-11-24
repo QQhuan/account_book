@@ -1,6 +1,6 @@
 {
-  "description": "项目配置文件",
   "cloudfunctionRoot": "miniprogram/cloud/",
+  "description": "项目配置文件",
   "miniprogramRoot": "miniprogram/",
   "compileType": "miniprogram",
   "projectname": "ts-sass-demo",
@@ -32,7 +32,10 @@
         "packageJsonPath": "./package.json",
         "miniprogramNpmDistDir": "./miniprogram/"
       }
-    ]
+    ],
+    "es6": false,
+    "enhance": false,
+    "condition": false
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
@@ -47,5 +50,6 @@
   "packOptions": {
     "ignore": [],
     "include": []
-  }
+  },
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }
