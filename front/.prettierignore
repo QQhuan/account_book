@@ -24,3 +24,5 @@ dist
 dist-ssr
 **/*.svg
 **/*.sh
+./miniprogram/cloud
+./miniprogram/miniprogram_npm

@@ -291,10 +291,10 @@
     "@typescript-eslint/types" "6.7.2"
     eslint-visitor-keys "^3.4.1"
 
-"@vant/weapp@^1.11.0":
-  version "1.11.0"
-  resolved "https://registry.npmmirror.com/@vant/weapp/-/weapp-1.11.0.tgz#135ec9daf7b8c1c39112006437100edbc5630173"
-  integrity sha512-4m0w6H6VSYOXmTcTaoZPlTMCF8+dD0MdccBvM8UGXACkT8xuYlSBzHcttr089hpVknaaGoYn2zub1l3bzIv2Uw==
+"@vant/weapp@^1.11.1":
+  version "1.11.1"
+  resolved "https://registry.npmmirror.com/@vant/weapp/-/weapp-1.11.1.tgz#26d3196751bb3602b2801554bac346d42d2e88b7"
+  integrity sha512-2QddSq3MsozbTBAgEmW1rhzsEJNWPF2VS427M5pOOn0a7/f6lW+tymwdTcOQCzQONavhFwBv6Lebbs/UjE3Yig==
 
 acorn-jsx@^3.0.0:
   version "3.0.1"
@@ -2245,10 +2245,23 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 prettier@2.0.5:
   version "2.0.5"
   resolved "https://registry.npmmirror.com/prettier/-/prettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
   integrity sha512-7PtVymN48hGcO4fGjybyBSIWDsLU4H4XlvOHfq91pz9kkGlonzwTfYkaIEwiRg/dAJF9YlbsduBAgtYLi+8cFg==
+=======
+=======
+>>>>>>> Stashed changes
+prettier@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npmmirror.com/prettier/-/prettier-3.1.0.tgz#c6d16474a5f764ea1a4a373c593b779697744d5e"
+  integrity sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
 prettier@^1.7.0:
   version "1.19.1"

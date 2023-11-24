@@ -1,0 +1,90 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="bg bg-color-base margin-b20"></view>
+  <view class="tab vs-row vs-align-center">
+    <image class="tab-bg" src="{{bg_url}}" mode=""></image>
+    <view class="vs-row vs-align-center">
+      <view class="vs-column vs-align-center margin-r40" bindtap="changeCur">
+        <text class="margin-b20 {{cur? 'color-black-3 font-46': 'color-base font-50'}}">登录</text>
+        <view class="line bg-color-base" wx:if="{{!cur}}"></view>
+      </view>
+      <view class="vs-column vs-align-center" bindtap="changeCur">
+        <text class="margin-b20 {{cur? 'color-base font-50': 'color-black-3 font-46'}}">注册</text>
+        <view class="line bg-color-base" wx:if="{{cur}}"></view>
+      </view>
+    </view>
+  </view>
+
+  <view class="login margin-b80" wx:if="{{cur}}">
+    <view class="input vs-row vs-align-center margin-b40">
+      <image class="input-icon margin-r20" src="../../utils/imgs/login/user.png" mode=""></image>
+      <input
+        class="vs-flex-item color-base font-30"
+        type="text"
+        value=""
+        :maxlength="11"
+        placeholder="请输入您的手机号/邮箱"
+        placeholder-class="input-placeholder"
+      />
+    </view>
+    <view class="input vs-row vs-align-center margin-b40">
+      <image class="input-icon margin-r20" src="../../utils/imgs/login/pwd.png" mode=""></image>
+      <input
+        class="vs-flex-item color-base font-30"
+        type="text"
+        password
+        value=""
+        placeholder="请输入您的登录密码"
+        placeholder-class="input-placeholder"
+      />
+    </view>
+  </view>
+
+  <view class="register margin-b80" wx:else>
+    <view class="input vs-row vs-align-center margin-b40">
+      <image class="input-icon margin-r20" src="../../utils/imgs/login/user.png" mode=""></image>
+      <input
+        class="vs-flex-item color-base font-30"
+        type="text"
+        value=""
+        :maxlength="11"
+        placeholder="请输入您的手机号/邮箱"
+        placeholder-class="input-placeholder"
+      />
+    </view>
+    <view class="input vs-row vs-align-center margin-b40">
+      <image class="input-icon margin-r20" src="../../utils/imgs/login/pwd.png" mode=""></image>
+      <input
+        class="vs-flex-item color-base font-30"
+        type="text"
+        password
+        value=""
+        placeholder="请输入您的登录密码"
+        placeholder-class="input-placeholder"
+      />
+    </view>
+  </view>
+
+  <view class="button bg-color-base vs-row vs-align-center vs-space-center margin-b20">
+    <text class="color-white font-34" bindtap="user_login">立即{{ cur ? '注册': '登录' }}</text>
+  </view>
+
+  <view class="vs-row vs-align-center vs-space-center margin-b100">
+    <text class="color-base font-28">忘记密码？</text>
+  </view>
+
+  <view class="other">
+    <view class="vs-row vs-align-center margin-b40">
+      <view class="separator vs-flex-item"></view>
+      <text class="color-black-3 font-28">更多登录方式</text>
+      <view class="separator vs-flex-item"></view>
+    </view>
+
+    <view class="other-items vs-row vs-align-center vs-space-around">
+      <image class="other-icon" src="../../utils/imgs/login/wx.png" mode="" />
+      <image class="other-icon" src="../../utils/imgs/login/qq.png" mode="" />
+      <image class="other-icon" src="../../utils/imgs/login/zfb.png" mode="" />
+    </view>
+  </view>
+  <soure :url="url"></soure>
+</view>

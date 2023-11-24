@@ -1,5 +1,15 @@
 /* components/common/detail-card/detail-card.wxss */
 .main {
   position: relative;
-  top: 50px;
+  top: 5rem;
+}
+.head {
+  height: 1.5rem;
+  width: 100%;
+  font-size: .8rem;
+  color: var(--cell-value-color,#969799);;
+}
+.float {
+  float: right;
+  margin-right: 0.5rem;
 }

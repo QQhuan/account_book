@@ -1,5 +1,5 @@
 // 基础服务地址
-const baseURL: string = 'https://www.demo.com'
+const baseURL: string = 'http://8.130.98.135:6666/account_book'
 
 /**
  * @description: HTTP请求方法枚举
@@ -106,7 +106,7 @@ class HttpRequest {
       wx.request({
         method: requestConfig.method,
         url: `${requestConfig.url}`,
-        data: requestConfig.data,
+        data: JSON.stringify(requestConfig.data),
         header: Object.assign(header, requestConfig?.header),
         dataType: !requestConfig.dataType ? 'json' : '其他',
         success: function (res) {
@@ -136,6 +136,7 @@ class HttpRequest {
           }
         },
         fail: err => {
+          console.log(err)
           let msg = _this.handerError(err, requestConfig)
           reject({ msg })
         }
@@ -157,7 +158,8 @@ class HttpRequest {
   /**
    * @description: post请求函数
    * @param {string} api 请求地址
-   * @param {Object} data 请求参数
+   !* @param {Object} data 请求参数
+   * @param {String} data 请求参数
    * @param {RequestConfig} OtherConfig request其他配置
    * @return {*}
    */
@@ -189,6 +191,7 @@ class HttpRequest {
 }
 
 const httpRequest = HttpRequest.getInstance()
+console.log(httpRequest)
 const get = httpRequest.get
 const post = httpRequest.post
 const put = httpRequest.put
