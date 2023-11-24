@@ -3,12 +3,39 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    detail: Object
+  },
 
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    default: {
+      date: "11月23日",
+      output: "102",
+      input: "0",
+      weekday: "星期四",
+      detail: [{
+        time: "9:00",
+        type: "购物",
+        count: "+28",
+        icon: "",
+        des: "我是描述信息",
+      },{
+        time: "9:00",
+        type: "购物",
+        count: "+28",
+        icon: "",
+        des: "我是描述信息",
+      },{
+        time: "9:00",
+        type: "购物",
+        count: "+28",
+        icon: "",
+        des: "我是描述信息",
+      }]}
+  },
 
   /**
    * 组件的方法列表
