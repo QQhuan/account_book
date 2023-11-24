@@ -4,3 +4,4 @@
 typings
 node_modules
 ./miniprogram/miniprogram_npm
+./miniprogram/cloud

@@ -1,5 +1,20 @@
 <!--components/common/detail-card/detail-card.wxml-->
-<van-cell-group class="main">
-  <van-cell title="购物" value="-19.5" />
-  <van-cell title="餐饮" value="哈哈哈" label="描述信息" border="{{ false }}" />
-</van-cell-group>
+<view class="main">
+  <view class="head">
+    <text>{{default.date}}</text>
+    <text style="margin-left: .5rem;">{{default.weekday}}</text>
+    <text class="float">收:{{default.input}}</text>
+    <text class="float">支:{{default.output}}</text>
+  </view>
+  <van-cell-group>
+    <van-cell wx:for="{{default.detail}}" value="{{item.count}}" icon="shop-o" label="{{item.des}}">
+      <view slot="title">
+        <view class="van-cell-text">{{item.type}}<text style="color: var(--cell-label-color,#969799);margin-left: .5rem;">{{item.time}}</text></view>
+      </view>
+      <view slot="label">
+        <view>{{item.des}}</view>
+      </view>
+    </van-cell>
+  </van-cell-group>
+</view>
+

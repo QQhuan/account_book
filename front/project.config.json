@@ -1,4 +1,5 @@
 {
+  "cloudfunctionRoot": "miniprogram/cloud/",
   "description": "项目配置文件",
   "miniprogramRoot": "miniprogram/",
   "compileType": "miniprogram",
@@ -31,7 +32,11 @@
         "packageJsonPath": "./package.json",
         "miniprogramNpmDistDir": "./miniprogram/"
       }
-    ]
+    ],
+    "es6": true,
+    "enhance": true,
+    "condition": false,
+    "postcss": false
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
@@ -46,5 +51,6 @@
   "packOptions": {
     "ignore": [],
     "include": []
-  }
+  },
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

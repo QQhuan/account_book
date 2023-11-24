@@ -1,0 +1,17 @@
+/* components/userinfo/total.wxss */
+.father {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 1rem 1rem;
+  border-radius: 10rpx;
+}
+.count {
+  text-align: center;
+  line-height: 1.4rem;
+}
+.description {
+  font-size: 24rpx;
+  text-align: center;
+}
