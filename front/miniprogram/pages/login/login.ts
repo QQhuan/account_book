@@ -24,7 +24,7 @@ Page({
   },
   user_login: function () {
     if(this.data.cur == 0) {
-      // 测试请求\
+      // 测试请求
       wx.redirectTo({
         url: '../index/index'
       })
@@ -32,9 +32,7 @@ Page({
       login(this.data.telPhone, this.data.pwd).then( (res)=>{
       // 请求成功
         console.log(res);
-        wx.redirectTo({
-          url: '../index/index'
-        })
+        
       }).catch( (res)=> {
       // 请求失败
         console.log(res);

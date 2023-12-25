@@ -3,8 +3,33 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
-
+  data: {
+    amtType: 0,
+    chartList: [{
+      id: 0,
+      percent: 80,
+      count: 356,
+      TypeName: "餐饮"
+    },{
+      id: 0,
+      percent: 80,
+      count: 356,
+      TypeName: "餐饮"
+    },{
+      id: 0,
+      percent: 80,
+      count: 356,
+      TypeName: "餐饮"
+    },{
+      id: 0,
+      percent: 80,
+      count: 356,
+      TypeName: "餐饮"
+    }]
+  },
+  changeType(name:number) {
+    this.setData({"amtType": name})
+  },
   /**
    * 生命周期函数--监听页面加载
    */

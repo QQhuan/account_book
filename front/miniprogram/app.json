@@ -6,7 +6,8 @@
     "pages/detail/detail",
     "pages/statistic/statistic",
     "pages/userinfo/userinfo",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/bar/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +27,9 @@
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
-    "van-action-sheet": "@vant/weapp/action-sheet/index"
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index"
   },
   "tabBar": {
     "custom": true,

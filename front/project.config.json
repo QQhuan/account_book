@@ -35,7 +35,8 @@
     ],
     "es6": false,
     "enhance": false,
-    "condition": false
+    "condition": false,
+    "postcss": false
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
