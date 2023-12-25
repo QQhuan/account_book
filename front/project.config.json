@@ -33,8 +33,8 @@
         "miniprogramNpmDistDir": "./miniprogram/"
       }
     ],
-    "es6": true,
-    "enhance": true,
+    "es6": false,
+    "enhance": false,
     "condition": false,
     "postcss": false
   },
