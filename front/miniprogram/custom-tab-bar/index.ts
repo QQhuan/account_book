@@ -10,6 +10,7 @@ Component({
    */
   data: {
     active: 0,
+    show: true,
     paths: ['detail', 'statistic', 'userinfo']
   },
 

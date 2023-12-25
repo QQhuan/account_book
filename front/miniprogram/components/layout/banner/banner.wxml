@@ -1,2 +1,12 @@
 <!--components/layout/banner/banner.wxml-->
-<view class="banner"> </view>
+<view class="banner">
+  <van-button size="small" custom-style="left: .2rem;background-color:#7889ee;border:none;color: #f6fcfd;" icon="apps-o" bind:tap="openPicker"> | 全部类型</van-button>
+  <view>
+    <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" icon="arrow-down" bind:tap="openPicker"> {{currentDate_year}}年-{{currentDate_month}}月</van-button>
+    <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" bind:tap="return;">总收入￥{{1088.3}} 总支出￥{{2345.0}}</van-button>
+  </view>
+  <van-action-sheet show="{{ show }}" bind:close="onClose" bind:getuserinfo="onGetUserInfo">
+    <van-datetime-picker type="datetime" value="{{ currentDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:cancel="onCancel"
+      bind:confirm="onConfirm"  bind:change="onChange" />
+  </van-action-sheet>
+</view>

@@ -6,7 +6,7 @@
       <van-image round width="5rem" height="5rem" style="padding: 0.8rem;" src="https://img.yzcdn.cn/vant/cat.jpeg" />
     </van-col>
     <van-col span="10" offset="5" class="userinfo-box">
-      <view class="username">我的名字</view>
+      <view class="username">哈哈哈</view>
     </van-col>
   </van-row>
   <view class="total">

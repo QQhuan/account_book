@@ -1,5 +1,5 @@
 <!--custom-tab-bar/index.wxml-->
-<van-tabbar active="{{ active }}" active-color="#5064eb" inactive-color="#000" bind:change="onChange">
+<van-tabbar wx:if="{{show}}" active="{{ active }}" active-color="#5064eb" inactive-color="#000" bind:change="onChange">
   <van-tabbar-item icon="notes-o" data-url="detail">明细</van-tabbar-item>
   <van-tabbar-item icon="chart-trending-o" data-url="statistic">统计</van-tabbar-item>
   <van-tabbar-item icon="contact-o" data-url="userinfo">我的</van-tabbar-item>

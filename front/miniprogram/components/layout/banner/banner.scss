@@ -4,6 +4,12 @@
   left: 0;
   top: 0;
   width: 100%;
-  height: 180rpx;
+  height: 158rpx;
+  padding-top: 10px;
   background: linear-gradient(to bottom, #5064eb, #495ee0);
+}
+.total-in-out {
+  display: inline;
+  color: #f6fcfd;
+  font-size:.8rem;
 }
