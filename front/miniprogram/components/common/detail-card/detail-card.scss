@@ -2,10 +2,12 @@
 .main {
   position: relative;
   top: 5rem;
+  z-index: -1;
 }
 .head {
-  height: 1.5rem;
+  height: 1.8rem;
   width: 100%;
+  padding: 0.5rem 0 0 0.2rem;
   font-size: .8rem;
   color: var(--cell-value-color,#969799);;
 }

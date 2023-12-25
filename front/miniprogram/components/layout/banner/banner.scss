@@ -13,3 +13,16 @@
   color: #f6fcfd;
   font-size:.8rem;
 }
+
+// 弹出层的类型选择box，弹性布局
+.flexBox{
+  display: flex;
+  padding: .8rem;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  button {
+    margin-right: .5rem;
+    margin-top: .5rem;
+  }
+}

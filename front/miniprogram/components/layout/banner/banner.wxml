@@ -1,12 +1,34 @@
 <!--components/layout/banner/banner.wxml-->
 <view class="banner">
-  <van-button size="small" custom-style="left: .2rem;background-color:#7889ee;border:none;color: #f6fcfd;" icon="apps-o" bind:tap="openPicker"> | 全部类型</van-button>
+  <van-button size="small" custom-style="left: .2rem;background-color:#7889ee;border:none;color: #f6fcfd;" icon="apps-o" bind:tap="openPlatePicker"> | 全部类型</van-button>
   <view>
     <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" icon="arrow-down" bind:tap="openPicker"> {{currentDate_year}}年-{{currentDate_month}}月</van-button>
     <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" bind:tap="return;">总收入￥{{1088.3}} 总支出￥{{2345.0}}</van-button>
   </view>
   <van-action-sheet show="{{ show }}" bind:close="onClose" bind:getuserinfo="onGetUserInfo">
-    <van-datetime-picker type="datetime" value="{{ currentDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:cancel="onCancel"
+    <van-datetime-picker type="date" value="{{ currentDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:cancel="onCancel"
       bind:confirm="onConfirm"  bind:change="onChange" />
+  </van-action-sheet>
+  <van-action-sheet show="{{ typePlateShow }}" bind:close="onPlateClose" bind:getuserinfo="onGetUserInfo">
+    <view>
+      <van-divider contentPosition="left">全部</van-divider>
+      <view class="flexBox">
+        <van-button wx:if="1" color="#5064eb">全部类型</van-button>
+        <van-button wx:else color="#5064eb">全部类型</van-button>
+      </view>
+      <van-divider contentPosition="left">支出</van-divider>
+      <view class="flexBox">
+        <van-button type="default">餐饮</van-button>
+        <van-button type="default">购物</van-button>
+      </view>
+      <van-divider contentPosition="left">收入</van-divider>
+      <view class="flexBox">
+        <van-button type="default">工资</van-button>
+        <van-button type="default">抢劫</van-button>
+        <van-button type="default">偷窃</van-button>
+        <van-button type="default">吃软饭</van-button>
+        <van-button type="default">吃软饭</van-button>
+      </view>
+    </view>
   </van-action-sheet>
 </view>

@@ -22,13 +22,30 @@ Component({
     currentDate_year: '2023',
     currentDate_month: '11',
     show: false,
-    currentChoose: ''
+    currentChoose: '',
+
+    // 类型选择面板数据
+    typePlateShow: false, // 类型选择组件
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    // 类型选择面板处理
+    onPlateClose() {
+      this.setData({ typePlateShow: false })
+      this.getTabBar().setData({
+        show: true
+      })
+    },
+    openPlatePicker() {
+      this.setData({ typePlateShow: true })
+      this.getTabBar().setData({
+        show: false
+      })
+    },
+    // 时间选择面板处理
     openPicker() {
       this.setData({ show: true })
       this.getTabBar().setData({

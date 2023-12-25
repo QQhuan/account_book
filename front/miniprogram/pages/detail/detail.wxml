@@ -1,5 +1,5 @@
 <!--pages/detail/detail.wxml-->
 <view>
   <banner></banner>
-  <!-- <detailCard></detailCard> -->
+  <detailCard></detailCard>
 </view>
