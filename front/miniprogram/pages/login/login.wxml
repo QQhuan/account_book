@@ -15,13 +15,13 @@
     </view>
   </view>
 
-  <view class="login margin-b80" wx:if="{{cur}}">
+  <view class="login margin-b80" wx:if="{{!cur}}">
     <view class="input vs-row vs-align-center margin-b40">
       <image class="input-icon margin-r20" src="../../utils/imgs/login/user.png" mode=""></image>
       <input
         class="vs-flex-item color-base font-30"
         type="text"
-        value=""
+        model:value="{{telPhone}}"
         :maxlength="11"
         placeholder="请输入您的手机号/邮箱"
         placeholder-class="input-placeholder"
@@ -33,7 +33,7 @@
         class="vs-flex-item color-base font-30"
         type="text"
         password
-        value=""
+        model:value="{{pwd}}"
         placeholder="请输入您的登录密码"
         placeholder-class="input-placeholder"
       />
@@ -46,7 +46,7 @@
       <input
         class="vs-flex-item color-base font-30"
         type="text"
-        value=""
+        model:value="{{telPhone}}"
         :maxlength="11"
         placeholder="请输入您的手机号/邮箱"
         placeholder-class="input-placeholder"
@@ -58,7 +58,7 @@
         class="vs-flex-item color-base font-30"
         type="text"
         password
-        value=""
+        model:value="{{pwd}}"
         placeholder="请输入您的登录密码"
         placeholder-class="input-placeholder"
       />

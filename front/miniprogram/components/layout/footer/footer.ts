@@ -19,6 +19,7 @@ Component({
       let app = getApp()
       const index = app.globalData.active
       this.setData({ active: index })
+      this.onChange({detail: 0}) // 手动显示明细页面
     }
   },
   /**
@@ -33,6 +34,7 @@ Component({
       app.globalData.active = index // 修改全局状态
       app.switchTab(`/pages/${url}/${url}`)
     },
+    // 并没有什么用的方法
     init() {
       const page = getCurrentPages().pop()
       const route = (page ? page.route.split('?')[0] : '').split('/')[1]

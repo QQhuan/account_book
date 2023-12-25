@@ -1,4 +1,7 @@
 // pages/login/login.ts
+
+import { login } from "../../api/login/index";
+
 // import loginApi from '../../http/login/index'
 Page({
   /**
@@ -6,6 +9,8 @@ Page({
    */
   data: {
     cur: 0,
+    telPhone: '',
+    pwd: '',
     bg_url: '../../utils/imgs/login/login_default_bg.png'
   },
 
@@ -24,13 +29,7 @@ Page({
         url: '../index/index'
       })
       return
-      wx.cloud.callFunction({
-        name: 'login', // 你的云函数名称
-        data: {
-          url: 'http://8.130.98.135:6666/account_book/user/login',
-          info: "123456 123465"
-        }
-      }).then( (res)=>{
+      login(this.data.telPhone, this.data.pwd).then( (res)=>{
       // 请求成功
         console.log(res);
         
@@ -44,16 +43,17 @@ Page({
         name: 'register', // 你的云函数名称
         data: {
           url: 'http://8.130.98.135:6666/account_book/user/register',
-          data: JSON.stringify({
-            userId: '',
-            userName: '',
-            wechatId: '',
-            gender: '',
-            introduction: '',
-            headPortraitPath: '',
-            totalDate: 0,
-            totalAmount: 0,
-            tel: '15521154941', password: '111'})
+          data: {
+            "userId": '',
+            "userName": '',
+            "wechatId": '',
+            "gender": '',
+            "introduction": '',
+            "headPortraitPath": '',
+            "totalDate": 0,
+            "totalAmount": 0,
+            "tel": '99999999999',
+            "password": '111'}
         }
       }).then( (res)=>{
       //请求成功

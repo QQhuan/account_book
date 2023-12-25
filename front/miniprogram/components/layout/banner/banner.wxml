@@ -1,19 +1,12 @@
 <!--components/layout/banner/banner.wxml-->
 <view class="banner">
-  <view class="header_item header_date">
-    <text>{{selectYear}}年</text>
-    <text class="header_date_month">{{selectMonth}}月</text>
-    <van-cell title="{{date}}" is-link bind:click="showPopup" />
-    <van-popup show="{{ show }}" z-index="9999" round position="bottom" custom-style="height: 50%" bind:close="onClose">
-      <van-datetime-picker type="year-month" value="{{ currentDate }}" min-date="{{ minDate }}" bind:input="onInput" />
-    </van-popup>
+  <van-button size="small" custom-style="left: .2rem;background-color:#7889ee;border:none;color: #f6fcfd;" icon="apps-o" bind:tap="openPicker"> | 全部类型</van-button>
+  <view>
+    <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" icon="arrow-down" bind:tap="openPicker"> {{currentDate_year}}年-{{currentDate_month}}月</van-button>
+    <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" bind:tap="return;">总收入￥{{1088.3}} 总支出￥{{2345.0}}</van-button>
   </view>
-  <view class="header_item">
-    <text>收入</text>
-    <text class="last">{{income}}</text>
-  </view>
-  <view class="header_item">
-    <text>支出</text>
-    <text class="last">{{outcome}}</text>
-  </view>
+  <van-action-sheet show="{{ show }}" bind:close="onClose" bind:getuserinfo="onGetUserInfo">
+    <van-datetime-picker type="datetime" value="{{ currentDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:cancel="onCancel"
+      bind:confirm="onConfirm"  bind:change="onChange" />
+  </van-action-sheet>
 </view>
