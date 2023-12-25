@@ -1,6 +1,6 @@
 <!--pages/statistic/statistic.wxml-->
 <view class="statistic_container"> 
-  <van-tabs bind:click="onClick"  color="white" title-active-color="# " title-inactive-color="grey">
+  <van-tabs bind:click="changeType"  color="white" title-active-color="# " title-inactive-color="grey">
     <van-tab title="收入"></van-tab>
     <van-tab title="支出"></van-tab>
   </van-tabs>
@@ -36,6 +36,7 @@
       </view>  -->
       <view class="book_list_item_info">
         <view class="book_list_item_top">
+          <text style="width: 5rpx;height: 5rpx;">{{item.idx}}</text>
           <text class="book_list_item_name">{{item.TypeName}} {{item.percent}}%</text>
           <text class="book_list_item_amt">{{item.count}}</text>
         </view>

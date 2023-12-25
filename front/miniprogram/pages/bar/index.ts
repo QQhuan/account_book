@@ -37,7 +37,7 @@ function initChart(canvas: { setChart: (arg0: any) => void; }, width: any, heigh
     },
     xAxis: {
       type: 'category',
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+      data: ['12.25', '12.26', '12.27', '12.28', '12.29', '12.30', '12.31'],
       boundaryGap: false,
     },
     yAxis: {
