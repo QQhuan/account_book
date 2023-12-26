@@ -1,5 +1,70 @@
 <!--pages/detail/detail.wxml-->
 <view>
-  <banner></banner>
+  <banner incomeAccounts="{{incomeAccounts}}" expenditureAccounts="{{expenditureAccounts}}"></banner>
   <detailCard></detailCard>
+  <van-button id="sticky-button" round icon="plus" color="#5064eb" plain
+    bindtap="addAccount" bindtap="openPlatePicker" bind:close="onPlateClose">记一笔</van-button>
+  <van-action-sheet title="请选择分类" show="{{ typePlateShow }}" bind:close="onPlateClose" bind:getuserinfo="onGetUserInfo">
+    <view>
+      <van-divider contentPosition="left">支出</van-divider>
+      <view class="flexBox">
+        <van-button wx:for="{{expenditureAccounts}}" wx:for-index="idx" data-id="{{item.accountTypeId}}" data-income="{{item.incomeOrExpenditureType}}" wx:key="idx" type="default" bindtap="changeType">{{item.accountTypeName}}</van-button>
+      </view>
+      <van-divider contentPosition="left">收入</van-divider>
+      <view class="flexBox">
+        <van-button wx:for="{{incomeAccounts}}" wx:for-index="idx" data-id="{{item.accountTypeId}}" data-income="{{item.incomeOrExpenditureType}}" wx:key="idx" type="default" bindtap="changeType">{{item.accountTypeName}}</van-button>
+      </view>
+      <van-divider contentPosition="left">分类管理</van-divider>
+      <view class="flexBox">
+        <van-button type="default" data-id="all" bindtap="changeType">分类管理</van-button>
+      </view>
+    </view>
+  </van-action-sheet>
+  <van-action-sheet title="记一笔" show="{{ activeType }}" bind:close="onAddClose" bind:getuserinfo="onGetUserInfo">
+    <view class="keyboard_wrapper">
+      <view class="keyboard_top">
+        <view class="keyboard_remark">
+          <input value="{{detail}}" placeholder="点击写备注..." bindinput="setDetail"></input>
+        </view>
+        <view class="keyboard_amt">{{amount}}</view>
+      </view>
+      <view class="keyboard_bottom clearfix">
+        <view catchtap="setAmt" data-val="7" class="keyboard_item">7</view>
+        <view catchtap="setAmt" data-val="8" class="keyboard_item">8</view>
+        <view catchtap="setAmt" data-val="9" class="keyboard_item">9</view>
+        <view wx:if="{{today == record_time}}" class="keyboard_item date">
+          <picker mode="date" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
+            <van-icon name="calendar-o" />今天
+          </picker>
+        </view>
+        <view wx:else class="keyboard_item date">
+          <picker mode="date" value="{{date}}" end="{{today}}" bindchange="bindDateChange">
+            {{record_time}}
+          </picker>
+          
+        </view>
+        <view catchtap="setAmt" data-val="4" class="keyboard_item">4</view>
+        <view catchtap="setAmt" data-val="5" class="keyboard_item">5</view>
+        <view catchtap="setAmt" data-val="6" class="keyboard_item">6</view>
+        <view catchtap="addPlan" class="keyboard_item plan">新增账本</view>
+        <view catchtap="setAmt" data-val="1" class="keyboard_item">1</view>
+        <view catchtap="setAmt" data-val="2" class="keyboard_item">2</view>
+        <view catchtap="setAmt" data-val="3" class="keyboard_item">3</view>
+        <view class="keyboard_item plan">
+          <picker bindchange="selectPlan" value="planList[planIdx]" range="{{planList}}" range-key="name">
+            <view class="picker">
+              {{planList[planIdx].name}}
+            </view>
+          </picker>
+        </view>
+        <view catchtap="setAmt" data-val="." class="keyboard_item">.</view>
+        <view catchtap="setAmt" data-val="0" class="keyboard_item">0</view>
+        <view catchtap="delAmt" class="keyboard_item del">
+          删除
+        </view>
+        <view catchtap="addAccount" class="keyboard_item btn">完成</view>
+      </view>
+    </view>  
+  </van-action-sheet>
+  <van-notify id="van-notify" />
 </view>

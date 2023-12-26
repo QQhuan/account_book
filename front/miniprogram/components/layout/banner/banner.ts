@@ -4,6 +4,12 @@ Component({
    * 组件的属性列表
    */
   properties: {
+      incomeAccounts: {
+        type: Array
+      },
+      expenditureAccounts: {
+        type: Array
+      },
     // year: {
     //   type: Number,
     //   value: 2023 // 给个默认值2023
@@ -44,6 +50,9 @@ Component({
       this.getTabBar().setData({
         show: false
       })
+    },
+    changeType(e:any) {
+      console.log(e.target.dataset.id)
     },
     // 时间选择面板处理
     openPicker() {

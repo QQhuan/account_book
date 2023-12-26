@@ -7,7 +7,7 @@ App<IAppOption>({
   },
   onLaunch() {
     wx.cloud.init({
-      env: "mycloudapi-3g0x3wlbb79ff164"
+      env: "cloud1-5g7ba78a12ce91dc"
     })
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []

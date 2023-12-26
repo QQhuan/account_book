@@ -13,21 +13,15 @@
     <view>
       <van-divider contentPosition="left">全部</van-divider>
       <view class="flexBox">
-        <van-button wx:if="1" color="#5064eb">全部类型</van-button>
-        <van-button wx:else color="#5064eb">全部类型</van-button>
+        <van-button type="default" data-id="all" bindtap="changeType">全部类型</van-button>
       </view>
       <van-divider contentPosition="left">支出</van-divider>
       <view class="flexBox">
-        <van-button type="default">餐饮</van-button>
-        <van-button type="default">购物</van-button>
+        <van-button wx:for="{{expenditureAccounts}}" wx:for-index="idx" data-id="{{item.accountTypeId}}" data-income="{{item.incomeOrExpenditureType}}" wx:key="idx" type="default" bindtap="changeType">{{item.accountTypeName}}</van-button>
       </view>
       <van-divider contentPosition="left">收入</van-divider>
       <view class="flexBox">
-        <van-button type="default">工资</van-button>
-        <van-button type="default">抢劫</van-button>
-        <van-button type="default">偷窃</van-button>
-        <van-button type="default">吃软饭</van-button>
-        <van-button type="default">吃软饭</van-button>
+        <van-button wx:for="{{incomeAccounts}}" wx:for-index="idx" data-id="{{item.accountTypeId}}" data-income="{{item.incomeOrExpenditureType}}" wx:key="idx" type="default" bindtap="changeType">{{item.accountTypeName}}</van-button>
       </view>
     </view>
   </van-action-sheet>
