@@ -1,5 +1,6 @@
 // pages/detail/detail.ts
-import { addAccount as addAccountApi } from "../../api/account/index";
+import { formatChinese, getweekday } from "../../utils/util";
+import { addAccount as addAccountApi, getAccountAll as getAccountAllApi } from "../../api/account/index";
 import { getAllType as getAllTypeApi } from "../../api/account_type/index";
 import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 Page({
@@ -13,6 +14,9 @@ Page({
     account_type_id: '', // 新增or修改时的分类id
     income_or_expenditure_type: '',
 
+    // 账单数据
+    accountList: [],
+
     /// 引入
     activeType:false,
     detail:'', // 备注
@@ -25,11 +29,14 @@ Page({
   },
   addAccount() {
     let data = {
-      "record_time": this.data.record_time,
+      "recordTime": this.data.record_time,
       "detail": this.data.detail,
-      "income_or_expenditure_type": this.data.income_or_expenditure_type,
-      "account_type_id": this.data.account_type_id,
+      "amount": this.data.amount,
+      "incomeOrExpenditureType": this.data.income_or_expenditure_type,
+      "accountTypeId": this.data.account_type_id,
+      "userId": wx.getStorageSync("userId")
     }
+    console.log(data)
     addAccountApi(data).then(() => {
       // 成功通知
       Notify({ type: 'success', message: "记账成功！"})
@@ -167,7 +174,7 @@ Page({
       let expenditureAccounts: any[] = []
       // 转换数据为对象，其中键为收入或支出类型，值为相关账户类型数组  
       data.forEach((cur:any) => {  
-        console.log(cur)
+        // console.log(cur)
         if(cur.incomeOrExpenditureType == 1) {
           // 支出
           expenditureAccounts.push(cur)
@@ -180,14 +187,91 @@ Page({
       this.setData({"incomeAccounts": incomeAccounts})
       // @ts-ignore
       this.setData({"expenditureAccounts": expenditureAccounts})
-      console.log("收入分类:", incomeAccounts);  
-      console.log("支出分类:", expenditureAccounts);
+      // console.log("收入分类:", incomeAccounts);  
+      // console.log("支出分类:", expenditureAccounts);
+      this.getAccountAll()
     })
+  },
+  // 加载个人所有账单
+  getAccountAll() {
+    getAccountAllApi(wx.getStorageSync("userId")).then((res) => {
+      const data = res.result
+      // @ts-ignore
+      this.processData(JSON.parse(data))
+    })
+  },
+  // 预处理数据
+  processData(data:any) {
+    let accountList: ({ date: Date; output: number; input: number; weekday: string; } & { detail: any[]; })[] = []
+    
+    let set = new Set()
+    for(let i = 0; i < data.length; i++) {
+      if(set.has(i)) {
+        continue
+      }
+      const item = data[i];
+      const datetime = item.recordTime
+      const detail: any[] = []
+      detail.push(item)
+      set.add(i)
+      console.log(item)
+      let accountObj = {
+        date: formatChinese(datetime, 'md'),
+        output: 0,
+        input: 0,
+        weekday: getweekday(datetime)
+      }
+      for(let j = i+1; j < data.length; j++) {
+        if(set.has(j)) {
+          continue
+        }
+        if(datetime == data[j].recordTime) {
+          detail.push(data[j])
+          set.add(j)
+        }
+      }
+      // 统计总收入、总支出
+      detail.forEach((item:any) => {
+        if(item.incomeOrExpenditureType == 0) {
+          // 收入
+          accountObj.input += item.amount
+        } else {
+          // 支出
+          accountObj.output += item.amount
+        }
+      })
+      detail.forEach((element:any) => {
+        let typeId = element.accountTypeId
+        let ioe = element.incomeOrExpenditureType
+        let name = ""
+        if(ioe == 0) 
+          this.data.incomeAccounts.forEach((ele:any) => {
+            if(ele.accountTypeId == typeId)
+              name = ele.accountTypeName
+          })
+        else 
+          this.data.expenditureAccounts.forEach((ele:any) => {
+            if(ele.accountTypeId == typeId)
+              name = ele.accountTypeName
+          })
+        element["accountTypeName"] = name
+      })
+      // @ts-ignore
+      accountList.push(Object.assign(accountObj, {'detail': detail}))
+    }
+    // @ts-ignore
+    this.setData({"accountList": accountList})
+    wx.hideLoading()
+    console.log(accountList)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+    wx.showLoading({
+      title: "加载中",
+      mask: true  // 开启蒙版遮罩
+    })
     this.initDate()
     this.getAllType()
   },

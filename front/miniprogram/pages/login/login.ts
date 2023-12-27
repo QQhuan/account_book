@@ -28,10 +28,10 @@ Page({
       wx.redirectTo({
         url: '../index/index'
       })
-      return
       login(this.data.telPhone, this.data.pwd).then( (res)=>{
-      // 请求成功
+        // 请求成功
         console.log(res);
+        wx.setStorageSync('userId', res.result) // 本地存储用户ID
         
       }).catch( (res)=> {
       // 请求失败
