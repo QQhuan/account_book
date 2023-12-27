@@ -1,0 +1,23 @@
+<!--pages/account_detail/account_detail.wxml-->
+<block wx:if="{{bookDetail != null}}">
+  <view class="detail_item">
+    <text class="detail_left">类型</text>
+    <text class="detail_right">{{bookDetail.incomeOrExpenditureType==1?'支出':'收入'}}</text>
+  </view>
+  <view class="detail_item">
+    <text class="detail_left">分类</text>
+    <text class="detail_right">{{bookDetail.tname}}</text>
+  </view>
+  <view class="detail_item">
+    <text class="detail_left">金额</text>
+    <text class="detail_right">{{bookDetail.amount}}</text>
+  </view>
+  <view class="detail_item">
+    <text class="detail_left">日期</text>
+    <text class="detail_right">{{bookDetail.date}} | {{bookDetail.week}}</text>
+  </view>
+  <view wx:if="{{bookDetail.detail}}" class="detail_item">
+    <text class="detail_left">备注</text>
+    <text class="detail_right">{{bookDetail.detail}}</text>
+  </view>
+</block>

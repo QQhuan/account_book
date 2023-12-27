@@ -24,20 +24,66 @@ Component({
 
     selectItem: {
       "date": '',
-      "accountId": ''
-    }
+      "accountId": '',
+      "detail": '',
+      "incomeOrExpenditureType": '',
+      "week": '',
+      "amount": 0,
+      "tname": ''
+    },
+    show: false,
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
+    openDetail() {
+      const o = this.data.selectItem
+      console.log(o)
+      let obj = {
+        "week": o.week,
+        "date": o.date,
+        "detail": o.detail,
+        "amount": o.amount,
+        "incomeOrExpenditureType": o.incomeOrExpenditureType,
+        "tname": o.tname
+      }
+      console.log(JSON.stringify(obj))
+      wx.setStorageSync("detail", JSON.stringify(obj))
+      wx.navigateTo({url: '/pages/account_detail/account_detail'})
+    },
+    showPopup() {
+      let that = this
+      wx.showModal({
+        editable:true, // 显示输入框
+        placeholderText: '备注信息',
+        // @ts-ignore
+        content: that.data.selectItem.detail,//显示输入框提示信息
+        success: res => {
+          if (res.confirm) { //点击了确认
+            // @ts-ignore
+            console.log(res.content)//用户输入的值
+          } else {
+            console.log('用户点击了取消')
+          }
+        }
+      })
+    },
+    onClose() {
+      this.setData({ show: false });
+    },
     showFunctionBox: function(e:any) { 
       console.log(e.currentTarget.dataset)
       this.setData({
         selectItem: {
           "date": e.currentTarget.dataset.date,
-          "accountId": e.currentTarget.dataset.accountid
+          "accountId": e.currentTarget.dataset.accountid,
+          "detail": e.currentTarget.dataset.detail,
+          "incomeOrExpenditureType": e.currentTarget.dataset.ie,
+          "week": e.currentTarget.dataset.week,
+          "amount": e.currentTarget.dataset.amount,
+          "tname": e.currentTarget.dataset.tname
         }
       })
       console.log(e)

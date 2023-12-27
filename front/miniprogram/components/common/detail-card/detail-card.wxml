@@ -7,7 +7,7 @@
     <text class="float">支:{{item.output}}</text>
   </view>
   <van-cell-group>
-    <van-cell wx:for="{{item.detail}}" wx:for-item="ele" value="{{ele.incomeOrExpenditureType==1?'-'+ele.amount:'+'+ele.amount}}" use-label-slot="true" icon="shop-o" data-date="{{item.date}}" data-accountid="{{ele.accountId}}" bindlongpress="showFunctionBox">
+    <van-cell wx:for="{{item.detail}}" wx:key="idx" wx:for-item="ele" value="{{ele.incomeOrExpenditureType==1?'-'+ele.amount:'+'+ele.amount}}" use-label-slot="true" icon="shop-o" data-date="{{item.date}}" data-detail="{{ele.detail}}"  data-ie="{{item.incomeOrExpenditureType}}" data-week="{{item.weekday}}" data-amount="{{ele.amount}}" data-tname="{{ele.accountTypeName}}" data-accountid="{{ele.accountId}}" bindlongpress="showFunctionBox">
       <view slot="title">
         <view class="van-cell-text">{{ele.accountTypeName}}<text style="color: var(--cell-label-color,#969799);margin-left: .5rem;"></text>
         </view>
@@ -19,8 +19,8 @@
   </van-cell-group>
   <view wx:if="{{display == 'block'}}" style="position: fixed; z-index: 999; background-color: #fff; border: 1px solid #ccc; padding: 10px;left:{{leftX}}px;top:{{topY}}px;">
     <van-cell title="删除" bindtap="del"/>
-    <van-cell title="修改备注"/>
-    <van-cell title="查看明细"/>
+    <van-cell title="修改备注" bindtap="showPopup"/>
+    <van-cell title="查看明细" bindtap="openDetail"/>
   </view>
 </view>
 

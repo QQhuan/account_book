@@ -12,7 +12,8 @@
     "pages/about/about",
     "pages/privacy/privacy",
     "pages/function/function",
-    "pages/feedback/feedback"
+    "pages/feedback/feedback",
+    "pages/account_detail/account_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
