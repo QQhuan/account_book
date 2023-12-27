@@ -7,6 +7,10 @@ Page({
     active: 2
   },
 
+  // 用户信息详细
+  lookUserInfo() {
+    wx.navigateTo({url: '/pages/user_detail/user_detail'})
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -269,8 +269,12 @@ Page({
     wx.hideLoading()
     console.log(accountList)
   },
-
-  // 
+  // 跳转分类管理页面
+  jump() {
+    console.log(1)
+    wx.navigateTo({url: "/pages/account_type/account_type"})
+  },
+  // 删除数据重新获取
   delTrigger(obj:any) {
     this.getAccountAll()
     return

@@ -1,6 +1,6 @@
 <!--pages/statistic/statistic.wxml-->
 <view class="statistic_container"> 
-  <van-tabs bind:click="changeType"  color="white" title-active-color="# " title-inactive-color="grey">
+  <van-tabs bind:click="changeType" color="white" title-active-color="#5064eb" title-inactive-color="grey">
     <van-tab title="收入"></van-tab>
     <van-tab title="支出"></van-tab>
   </van-tabs>

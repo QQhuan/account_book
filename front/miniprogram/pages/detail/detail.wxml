@@ -16,7 +16,7 @@
       </view>
       <van-divider contentPosition="left">分类管理</van-divider>
       <view class="flexBox">
-        <van-button type="default" data-id="all" bindtap="changeType">分类管理</van-button>
+        <van-button type="default" data-id="all" bindtap="jump">分类管理</van-button>
       </view>
     </view>
   </van-action-sheet>

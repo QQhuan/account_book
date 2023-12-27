@@ -1,0 +1,20 @@
+<!--pages/user_detail/user_detail.wxml-->
+<view class="box">
+  <view style="height: max-content;background-color: #fff;width: 100%;height: 8rem;padding-top: 1.5rem;text-align: center;">
+      <!-- 头像 -->
+      <van-image round width="6rem" height="6rem" style="padding: 0.8rem;" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+  </view>
+  <view style="padding-top: .4rem;">
+    <van-cell-group>
+      <van-cell title="昵称" value="空腹不能吃饭" />
+      <van-cell title="ID" value="bef098376po" />
+      <van-cell title="性别" value="男" />
+      <van-cell title="手机" value="10086" />
+      <van-cell title="微信" value="十" is-link/>
+      <van-cell title="修改密码" is-link/>
+    </van-cell-group>
+  </view>
+  <view style="padding-top: .8rem;">
+    <view style="color: red;text-align: center;">退出登录</view>
+  </view>
+</view>

@@ -22,8 +22,8 @@ Component({
   data: {
     minHour: 0,
     maxHour: 24,
-    minDate: new Date(1990,1,1).getTime(),
-    maxDate: new Date(2099, 12, 31).getTime(),
+    minDate: new Date(1998,1,1).getTime(),
+    maxDate: new Date().getTime(),
     currentDate: new Date().getTime(),
     currentDate_year: '2023',
     currentDate_month: '11',

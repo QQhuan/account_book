@@ -10,6 +10,8 @@
         link-type="navigateTo"
         url="/pages/settings/settings" /> -->
       <van-cell title="更改主页背景" is-link/>
+      <van-cell title="分类管理" is-link  link-type="navigateTo"
+        url="/pages/account_type/account_type"/>
     </view>
   </view>
 </view>
