@@ -3,7 +3,13 @@
   position: fixed;  
   right: 1rem;  /* 根据需要调整距离右边的距离 */  
   bottom: 4rem; /* 根据需要调整距离底部的距离 */  
-  z-index: -1; 
+  z-index: -1;
+}
+#detail {
+  position: absolute;
+  width: 100%;
+  margin-top: 5rem;
+  z-index: -1;
 }
 
 // 弹出层的类型选择box，弹性布局

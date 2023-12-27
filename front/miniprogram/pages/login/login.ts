@@ -1,6 +1,6 @@
 // pages/login/login.ts
 
-import { login } from "../../api/login/index";
+import { login, register } from "../../api/login/index";
 
 // import loginApi from '../../http/login/index'
 Page({
@@ -24,43 +24,33 @@ Page({
   },
   user_login: function () {
     if(this.data.cur == 0) {
-      // 测试请求
-      wx.redirectTo({
-        url: '../index/index'
-      })
       login(this.data.telPhone, this.data.pwd).then( (res)=>{
         // 请求成功
         console.log(res);
         wx.setStorageSync('userId', res.result) // 本地存储用户ID
-        
+        wx.redirectTo({
+          url: '../index/index'
+        })
       }).catch( (res)=> {
       // 请求失败
         console.log(res);
       })
     } else {
-      // 注册请求
-      wx.cloud.callFunction({
-        name: 'register', // 你的云函数名称
-        data: {
-          url: 'http://8.130.98.135:6666/account_book/user/register',
-          data: {
-            "userId": '',
-            "userName": '',
-            "wechatId": '',
-            "gender": '',
-            "introduction": '',
-            "headPortraitPath": '',
-            "totalDate": 0,
-            "totalAmount": 0,
-            "tel": '99999999999',
-            "password": '111'}
-        }
-      }).then( (res)=>{
-      //请求成功
-        console.log(res);
-      }).catch( (res)=> {
-      //请求失败
-        console.log(res);
+      let data = {
+        // "userId": '',
+        "userName": '',
+        "wechatId": '',
+        "gender": '',
+        "introduction": '',
+        "headPortraitPath": '',
+        "totalDate": 0,
+        "totalAmount": 0,
+        "tel": this.data.telPhone,
+        "password":  this.data.pwd
+      }
+      console.log(data)
+      register(data).then((res:any) => {
+        wx.showToast({title: res.result, mask: true})
       })
     }
     	 
@@ -81,7 +71,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {},
+  onLoad() {
+    wx.clearStorageSync() // 清除用户信息
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

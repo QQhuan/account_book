@@ -18,7 +18,7 @@
     <van-tab title="月">
       
     </van-tab>
-    <van-tab title="月">
+    <van-tab title="年">
     月</van-tab>
   </van-tabs>
 

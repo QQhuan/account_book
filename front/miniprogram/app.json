@@ -7,7 +7,12 @@
     "pages/statistic/statistic",
     "pages/userinfo/userinfo",
     "pages/login/login",
-    "pages/bar/index"
+    "pages/bar/index",
+    "pages/settings/settings",
+    "pages/about/about",
+    "pages/privacy/privacy",
+    "pages/function/function",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -32,7 +37,8 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "van-divider": "@vant/weapp/divider/index",
     "van-sticky": "@vant/weapp/sticky/index",
-    "van-notify": "@vant/weapp/notify/index"
+    "van-notify": "@vant/weapp/notify/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   },
   "tabBar": {
     "custom": true,

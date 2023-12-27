@@ -1,0 +1,15 @@
+<!--pages/settings/settings.wxml-->
+<view>
+  <view class="main-content">
+    <view>
+      <!-- <van-cell title="用户反馈" icon="envelop-o" is-link />
+      <van-cell title="关于我们" icon="eye-o" is-link
+        link-type="navigateTo"
+        url="/pages/about/about" />
+      <van-cell title="设置" is-link icon="setting-o"
+        link-type="navigateTo"
+        url="/pages/settings/settings" /> -->
+      <van-cell title="更改主页背景" is-link/>
+    </view>
+  </view>
+</view>

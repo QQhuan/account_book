@@ -1,0 +1,26 @@
+/* pages/feedback/feedback.wxss */
+.container {  
+  display: flex;  
+  flex-direction: column;  
+  align-items: center;  
+  justify-content: center;  
+  height: 100vh;  
+}  
+  
+.section {  
+  margin-bottom: 20px;  
+}  
+  
+.section-title {  
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: .5rem;
+  text-align: center;
+}  
+  
+.section-content {  
+  font-size: 16px;  
+}
+.submitFeedback{
+  top: 1rem;
+}

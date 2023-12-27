@@ -16,4 +16,14 @@ const getAccountAll = (userId:string) => {
     }
   })
 }
-export { addAccount, getAccountAll }
+
+const delAccount = (id:string) => {
+  return wx.cloud.callFunction({
+    name: 'delAccount', // 云函数名称
+    data: {
+      url: 'http://8.130.98.135:6666/account_book/account/delete',
+      info: id
+    }
+  })
+}
+export { addAccount, getAccountAll, delAccount }

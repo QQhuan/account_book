@@ -2,7 +2,6 @@
 import { formatChinese, getweekday } from "../../utils/util";
 import { addAccount as addAccountApi, getAccountAll as getAccountAllApi } from "../../api/account/index";
 import { getAllType as getAllTypeApi } from "../../api/account_type/index";
-import Notify from '../../miniprogram_npm/@vant/weapp/notify/notify';
 Page({
   /**
    * 页面的初始数据
@@ -27,6 +26,9 @@ Page({
     remarkArr:{}, // 备注列表
     selectTypeRemarks:[], // 选中类型的remark列表
   },
+
+  
+
   addAccount() {
     let data = {
       "recordTime": this.data.record_time,
@@ -34,16 +36,17 @@ Page({
       "amount": this.data.amount,
       "incomeOrExpenditureType": this.data.income_or_expenditure_type,
       "accountTypeId": this.data.account_type_id,
-      "userId": wx.getStorageSync("userId")
+      "userId": wx.getStorageSync("userId"),
+      "scrollTop": 0
     }
     console.log(data)
     addAccountApi(data).then(() => {
       // 成功通知
-      Notify({ type: 'success', message: "记账成功！"})
+      // Notify({ type: 'success', message: "记账成功！"})
+      wx.showToast({title: '记账成功！'})
       let that = this
-      setTimeout(function() {  
-        that.onAddClose()
-      }, 1000);
+      that.onAddClose()
+      that.getAccountAll()
     })
   },
   // add的时候分类选择
@@ -203,7 +206,9 @@ Page({
   // 预处理数据
   processData(data:any) {
     let accountList: ({ date: Date; output: number; input: number; weekday: string; } & { detail: any[]; })[] = []
-    
+    // @ts-ignore
+    data = data.sort((a:any, b:any) => {return new Date(b.recordTime)-new Date(a.recordTime)})
+    console.log(data)
     let set = new Set()
     for(let i = 0; i < data.length; i++) {
       if(set.has(i)) {
@@ -214,7 +219,7 @@ Page({
       const detail: any[] = []
       detail.push(item)
       set.add(i)
-      console.log(item)
+      // console.log(item)
       let accountObj = {
         date: formatChinese(datetime, 'md'),
         output: 0,
@@ -264,6 +269,38 @@ Page({
     wx.hideLoading()
     console.log(accountList)
   },
+
+  // 
+  delTrigger(obj:any) {
+    this.getAccountAll()
+    return
+    console.log(obj.detail.params)
+    const date = obj.detail.params.date
+    const accountId = obj.detail.params.accountId
+    let aList = this.data.accountList
+    let index = 0
+    for(let i = 0; i < aList.length; i++) {
+      // @ts-ignore
+      if(aList[i].date == date) {
+        index = i
+        break
+      }
+    }
+    // @ts-ignore
+    let list = aList[index].detail
+    let newList = []
+    for(let i = 0; i < list.length; i++) {
+      if(list[i].accountId != accountId) {
+        newList.push(list[i])
+      }
+    }
+    // @ts-ignore
+    aList[index].detail = newList
+    this.setData({
+      "accountList": aList
+    })
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -279,8 +316,12 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady() {},
+  onReady() {
+    // this.data.scrollEvent = this.wx('#scroll-container').on('scroll', this.handleScroll);  
+  },
+  handleScroll() {
 
+  },
   /**
    * 生命周期函数--监听页面显示
    */

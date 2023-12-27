@@ -1,0 +1,13 @@
+<!--pages/feedback/feedback.wxml-->
+
+<view class="section-title">用户反馈</view>  
+<view class="container">  
+  <view class="section">  
+    <view class="section-content">  
+      <input type="text" placeholder="请输入您的反馈内容" bindinput="inputChange" />  
+    </view> 
+    <view style="margin-top: 1rem;">
+      <button bindtap="submitFeedback">提交</button> 
+    </view> 
+  </view>  
+</view>

@@ -1,7 +1,7 @@
 <!--pages/detail/detail.wxml-->
 <view>
   <banner incomeAccounts="{{incomeAccounts}}" expenditureAccounts="{{expenditureAccounts}}"></banner>
-  <detailCard accountList="{{accountList}}"></detailCard>
+  <detailCard bindmyevent="delTrigger" id="detail" accountList="{{accountList}}"></detailCard>
   <van-button id="sticky-button" round icon="plus" color="#5064eb" plain
     bindtap="addAccount" bindtap="openPlatePicker" bind:close="onPlateClose">记一笔</van-button>
   <van-action-sheet title="请选择分类" show="{{ typePlateShow }}" bind:close="onPlateClose" bind:getuserinfo="onGetUserInfo">

@@ -15,9 +15,15 @@
 </view>
 <view class="main-content">
   <view>
-    <van-cell title="用户反馈" icon="envelop-o" is-link />
-    <van-cell title="关于我们" icon="eye-o" is-link />
-    <van-cell title="设置" is-link icon="setting-o" />
+    <van-cell title="用户反馈" icon="envelop-o" is-link 
+      link-type="navigateTo"
+      url="/pages/feedback/feedback"/>
+    <van-cell title="关于我们" icon="eye-o" is-link
+      link-type="navigateTo"
+      url="/pages/about/about" />
+    <van-cell title="设置" is-link icon="setting-o"
+      link-type="navigateTo"
+      url="/pages/settings/settings" />
     <van-cell title="退出" is-link icon="revoke"
       link-type="redirectTo"
       url="/pages/login/login"/>

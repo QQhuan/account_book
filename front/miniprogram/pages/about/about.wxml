@@ -1,0 +1,21 @@
+<!--pages/about/about.wxml-->
+<view>
+  <view class="other-items vs-row vs-align-center vs-space-around">
+    <image class="other-icon" src="../../utils/imgs/about/logo.png" mode="widthFix" />
+  </view>
+  <view class="txt">随手记</view>
+  <view class="txt version">版本V1.0</view>
+  <view class="main-content">
+    <view>
+      <van-cell title="功能介绍" is-link
+        link-type="navigateTo"
+        url="/pages/function/function" />
+      <van-cell title="联系客服" is-link
+        bindtap="onShowTel"/>
+      <van-cell title="隐私协议"  is-link
+        link-type="navigateTo"
+        url="/pages/privacy/privacy" />
+    </view>
+  </view>
+  <van-dialog id="van-dialog" />
+</view>
