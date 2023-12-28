@@ -25,8 +25,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         );
         if (null != result) {
             if (user.getPassword().equals(result.getPassword())) {
-                return "登录成功！";
+                return result.getUserId();
             }else {
+
                 return "密码错误！";
             }
         }else{

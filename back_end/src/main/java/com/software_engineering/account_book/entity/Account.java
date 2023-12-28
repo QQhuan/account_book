@@ -14,7 +14,7 @@ import java.util.Date;
  * @Date 2023/11/16 9:40
  */
 @Data
-@TableName("user")
+@TableName("account")
 public class Account {
     @TableId(type = IdType.ASSIGN_UUID)
     String accountId;
@@ -24,5 +24,6 @@ public class Account {
     Date recordTime;
     String detail;
     String accountBookId;
+    String userId;
 
 }
