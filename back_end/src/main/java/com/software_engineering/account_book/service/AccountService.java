@@ -20,7 +20,7 @@ public interface AccountService {
 
     List<Account> getAllAccounts(String userId);
 
-    List<Account> getAccountByYear(String userId, String year);
+    StatisticalData getAccountByYear(String userId, String year, String inOrOut);
 
-    StatisticalData getAccountsByMonth(String userId, String year, String month, String in_or_out);
+    StatisticalData getAccountsByMonth(String userId, String year, String month, String inOrOut);
 }

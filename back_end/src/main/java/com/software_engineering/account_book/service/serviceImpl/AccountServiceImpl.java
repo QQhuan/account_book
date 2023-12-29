@@ -10,6 +10,7 @@ import com.software_engineering.account_book.utils.StatisticalData;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -54,59 +55,72 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     }
 
     @Override
-    public List<Account> getAccountByYear(String userId, String year) {
+    public StatisticalData getAccountByYear(String userId, String year,String inOrOut) {
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.apply(" date_format(record_time,'%Y') = " + year + "");
         wrapper.eq("user_id", userId);
-        return baseMapper.selectList(wrapper);
+        wrapper.eq("income_or_expenditure_type", inOrOut);
+        StatisticalData data = new StatisticalData();
+        List<Account> result = baseMapper.selectList(wrapper);
+        if (result.size() > 0) {
+            Map<String, Double> mapByType = new HashMap<>();
+            Map<String, Double> mapByTime = new HashMap<>();
+            for (Account account : result) {
+                String typeId = account.getAccountTypeId();
+                Double amountByType = mapByType.get(typeId);
+                if (null == amountByType) {
+                    mapByType.put(typeId, account.getAmount());
+                } else {
+                    mapByType.put(typeId, account.getAmount() + amountByType);
+                }
+                Date date = account.getRecordTime();
+                String month=new SimpleDateFormat("MMMM").format(date);
+                Double amountByDate = mapByTime.get(month);
+                if (null == amountByDate) {
+                    mapByTime.put(month, account.getAmount());
+                } else {
+                    mapByTime.put(month, account.getAmount() + amountByDate);
+                }
+            }
+            data.setType(mapByType);
+            data.setTime(mapByTime);
+
+        }
+        return data;
     }
 
     @Override
-    public StatisticalData getAccountsByMonth(String userId, String year, String month, String in_or_out) {
+    public StatisticalData getAccountsByMonth(String userId, String year, String month, String inOrOut) {
         QueryWrapper wrapper = new QueryWrapper();
         wrapper.apply(" date_format(record_time,'%Y') = " + year + "");
         wrapper.apply(" date_format(record_time,'%m') = " + month + "");
         wrapper.eq("user_id", userId);
-        wrapper.eq("income_or_expenditure_type", in_or_out);
+        wrapper.eq("income_or_expenditure_type", inOrOut);
         List<Account> result = baseMapper.selectList(wrapper);
         StatisticalData data = new StatisticalData();
-        if (result.size() <= 0) {
-
-        } else {
-
-            Map<String, Double> type = new HashMap<>();
-            Map<String, Double> time = new HashMap<>();
+        if (result.size() > 0) {
+            Map<String, Double> mapByType = new HashMap<>();
+            Map<String, Double> mapByTime = new HashMap<>();
             for (Account account : result) {
-
-                type[account.getAccountTypeId()];
-
-                Double typeDouble;
-                if(null == type){
-                    typeDouble = new Double(account.getAmount()) ;
-                }else{
-                    typeDouble = new Double(type.get(account.getAccountTypeId())) ;
+                String typeId = account.getAccountTypeId();
+                Double amountByType = mapByType.get(typeId);
+                if (null == amountByType) {
+                    mapByType.put(typeId, account.getAmount());
+                } else {
+                    mapByType.put(typeId, account.getAmount() + amountByType);
                 }
-
-                typeDouble = typeDouble.doubleValue() + account.getAmount();
-                type.put(account.getAccountTypeId(), typeDouble);
-
                 Date date = account.getRecordTime();
-                String dayTmp = String.format("%td", date);
-                Double timeDouble = new Double(time.get(dayTmp));
-                timeDouble = timeDouble.doubleValue() + account.getAmount();
-                time.put(dayTmp, timeDouble);
-
+                Double amountByDate = mapByTime.get(date.toString());
+                if (null == amountByDate) {
+                    mapByTime.put(date.toString(), account.getAmount());
+                } else {
+                    mapByTime.put(date.toString(), account.getAmount() + amountByDate);
+                }
             }
-            List<Map<String, Double>> thisMonth = new LinkedList<>();
-            thisMonth.add(time);
-            data.setTime(thisMonth);
-
-            List<Map<String, Double>> types = new LinkedList<>();
-            types.add(type);
-            data.setType(types);
+            data.setType(mapByType);
+            data.setTime(mapByTime);
         }
         return data;
-
     }
 
 }
