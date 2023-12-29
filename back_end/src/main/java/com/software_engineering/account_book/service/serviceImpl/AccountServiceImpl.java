@@ -1,7 +1,6 @@
 package com.software_engineering.account_book.service.serviceImpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.software_engineering.account_book.entity.Account;
 import com.software_engineering.account_book.mapper.AccountMapper;
@@ -66,12 +65,12 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
             Map<String, Double> mapByType = new HashMap<>();
             Map<String, Double> mapByTime = new HashMap<>();
             for (Account account : result) {
-                String typeId = account.getAccountTypeId();
-                Double amountByType = mapByType.get(typeId);
+                String typeName = account.getAccountTypeName();
+                Double amountByType = mapByType.get(typeName);
                 if (null == amountByType) {
-                    mapByType.put(typeId, account.getAmount());
+                    mapByType.put(typeName, account.getAmount());
                 } else {
-                    mapByType.put(typeId, account.getAmount() + amountByType);
+                    mapByType.put(typeName, account.getAmount() + amountByType);
                 }
                 Date date = account.getRecordTime();
                 String month=new SimpleDateFormat("MMMM").format(date);
@@ -102,12 +101,12 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
             Map<String, Double> mapByType = new HashMap<>();
             Map<String, Double> mapByTime = new HashMap<>();
             for (Account account : result) {
-                String typeId = account.getAccountTypeId();
-                Double amountByType = mapByType.get(typeId);
+                String typeName = account.getAccountTypeName();
+                Double amountByType = mapByType.get(typeName);
                 if (null == amountByType) {
-                    mapByType.put(typeId, account.getAmount());
+                    mapByType.put(typeName, account.getAmount());
                 } else {
-                    mapByType.put(typeId, account.getAmount() + amountByType);
+                    mapByType.put(typeName, account.getAmount() + amountByType);
                 }
                 Date date = account.getRecordTime();
                 Double amountByDate = mapByTime.get(date.toString());

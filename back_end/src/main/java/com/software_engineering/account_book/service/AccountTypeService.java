@@ -32,4 +32,8 @@ public interface AccountTypeService  {
      * @return 账单类别的id
      */
     String getAccountTypeIdByAccountTypeName(String name);
+
+    boolean deleteAccountType(String typeId);
+
+    boolean updateAccountType(AccountType type);
 }

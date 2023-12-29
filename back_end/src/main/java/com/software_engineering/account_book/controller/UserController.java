@@ -40,4 +40,23 @@ public class UserController {
             return "注册失败！";
         }
     }
+
+    @PostMapping("/update")
+    public String update(@RequestBody String temp) {
+        User user = gson.fromJson(temp, User.class);
+        if (userService.update(user)) {
+            return "注册成功！";
+        } else {
+            return "注册失败！";
+        }
+    }
+
+    @PostMapping("/delete")
+    public String deleteByUserId(@RequestBody String userId) {
+        if (userService.deleteByUserId(userId)) {
+            return "删除成功！";
+        } else {
+            return "删除失败！";
+        }
+    }
 }

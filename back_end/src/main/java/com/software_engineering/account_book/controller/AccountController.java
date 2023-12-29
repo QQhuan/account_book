@@ -2,10 +2,8 @@ package com.software_engineering.account_book.controller;
 
 import com.google.gson.Gson;
 import com.software_engineering.account_book.entity.Account;
-import com.software_engineering.account_book.entity.AccountType;
 import com.software_engineering.account_book.service.AccountService;
 import com.software_engineering.account_book.utils.StatisticalData;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -26,19 +26,39 @@ public class AccountTypeServiceImpl extends ServiceImpl<AccountTypeMapper, Accou
         );
         if (null == result) {
             getBaseMapper().insert(type);
-            return  "添加类别成功！";
-        }else{
+            return "添加类别成功！";
+        } else {
             return "类别已存在！";
         }
     }
 
     @Override
     public LinkedList<AccountType> getAllAccountTypes() {
-        return new LinkedList<>(baseMapper.selectList(null)) ;
+        return new LinkedList<>(baseMapper.selectList(null));
     }
 
     @Override
     public String getAccountTypeIdByAccountTypeName(String name) {
         return null;
+    }
+
+    @Override
+    public boolean deleteAccountType(String typeId) {
+        int ret = baseMapper.deleteById(typeId);
+        if (ret == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateAccountType(AccountType type) {
+        int ret = baseMapper.updateById(type);
+        if (ret == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

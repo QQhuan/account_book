@@ -25,6 +25,7 @@ public class AccountTypeController {
     private AccountTypeService accountTypeService;
     @Resource
     private Gson gson;
+
     @PostMapping("/add")
     public String addAccountType(@RequestBody String temp) {
         AccountType type = gson.fromJson(temp, AccountType.class);
@@ -35,5 +36,24 @@ public class AccountTypeController {
     public String getAllAccountTypes() {
         LinkedList<AccountType> list = accountTypeService.getAllAccountTypes();
         return gson.toJson(list);
+    }
+
+    @PostMapping("/delete")
+    public String deleteAccountType(@RequestBody String typeId) {
+        if (accountTypeService.deleteAccountType(typeId)) {
+            return "删除成功！";
+        } else {
+            return "删除失败！";
+        }
+    }
+
+    @PostMapping("/update")
+    public String updateAccountType(@RequestBody String tmp) {
+        AccountType type = gson.fromJson(tmp, AccountType.class);
+        if (accountTypeService.updateAccountType(type)) {
+            return "更新成功！";
+        } else {
+            return "更新失败！";
+        }
     }
 }
