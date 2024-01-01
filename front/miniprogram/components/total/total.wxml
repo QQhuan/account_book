@@ -1,15 +1,15 @@
 <!--components/userinfo/total.wxml-->
 <view class="father">
   <view>
-    <view class="count">100</view>
+    <view class="count">{{user.totalDate?user.totalDate:0}}</view>
     <view class="description">已连续打卡</view>
   </view>
   <view>
-    <view class="count">83</view>
+    <view class="count">{{user.totalDate?user.totalDate:0}}</view>
     <view class="description">记账总天数</view>
   </view>
   <view>
-    <view class="count">490</view>
+    <view class="count">{{user.totalAmount?user.totalAmount:0}}</view>
     <view class="description">记账总笔数</view>
   </view>
 </view>

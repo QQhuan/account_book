@@ -1,6 +1,7 @@
 // pages/detail/detail.ts
-import { formatChinese, getweekday } from "../../utils/util";
-import { addAccount as addAccountApi, getAccountAll as getAccountAllApi, getAccountByYear as getAccountByYearApi, getAccountByMonth as getAccountByMonthApi } from "../../api/account/index";
+import { formatChinese, getweekday, formatTime2 } from "../../utils/util";
+import { addAccount as addAccountApi, getAccountAll as getAccountAllApi, getAccountByMonth as getAccountByMonthApi } from "../../api/account/index";
+import { getUserInfo } from "../../api/user/index";
 import { getAllType as getAllTypeApi } from "../../api/account_type/index";
 Page({
   /**
@@ -10,15 +11,19 @@ Page({
     incomeAccounts: [], // 收入类型
     expenditureAccounts: [], // 支出
     income_or_expenditure_type: '',
+    hasData: false, 
 
     // 账单数据
     accountList: [], //  传给detail-card组件的数据
     // 界面展示的类型，默认展示全部
-    typeId: '',
+    typeId: 'all',
     // 界面展示的月份，默认当前月份
     currentMonth: new Date().getMonth()+1,
     // 年份
     currentYear: new Date().getFullYear(),
+    // 当月总收入支出
+    inputSum: 0,
+    outputSum: 0,
 
     /// 引入, 新增账单相关数据
     typePlateShow: false, // 分类面板
@@ -32,8 +37,6 @@ Page({
     remarkArr:{}, // 备注列表
     selectTypeRemarks:[], // 选中类型的remark列表
   },
-
-  
 
   addAccount() {
     let typeName = ''
@@ -51,12 +54,12 @@ Page({
       })
     }
     let data = {
-      "recordTime": this.data.record_time,
+      "recordTime": formatTime2(this.data.record_time),
       "detail": this.data.detail,
-      "amount": this.data.amount,
+      "amount": Number(this.data.amount),
       "incomeOrExpenditureType": this.data.income_or_expenditure_type,
       "accountTypeId": this.data.account_type_id,
-      //"accountTypeName": typeName,
+      "accountTypeName": typeName,
       "userId": wx.getStorageSync("userId")
     }
     console.log(data)
@@ -227,6 +230,11 @@ Page({
   // 预处理数据
   processData(data:any) {
     let accountList: ({ date: Date; output: number; input: number; weekday: string; } & { detail: any[]; })[] = []
+    if(this.data.typeId != 'all') {
+      data = data.filter((val:any) => {
+        return this.data.typeId == val.accountTypeId
+      })
+    }
     // @ts-ignore
     data = data.sort((a:any, b:any) => {return new Date(b.recordTime)-new Date(a.recordTime)})
     console.log(data)
@@ -244,6 +252,8 @@ Page({
       let accountObj = {
         date: formatChinese(datetime, 'md'),
         output: 0,
+        year: new Date(datetime).getFullYear(),
+        month: new Date(datetime).getMonth()+1,
         input: 0,
         weekday: getweekday(datetime)
       }
@@ -284,6 +294,21 @@ Page({
       })
       // @ts-ignore
       accountList.push(Object.assign(accountObj, {'detail': detail}))
+    }
+    accountList = accountList.filter((val:any) => val.year == this.data.currentYear && val.month == this.data.currentMonth)
+    let inputSum = 0
+    let outputSum = 0
+    accountList.map((val:any)=>{
+      inputSum += Number(val.input)
+      outputSum += Number(val.output)
+    })
+    this.setData({
+      inputSum, outputSum
+    })
+    if(accountList.length > 0) {
+      this.setData({hasData: true})
+    } else {
+      this.setData({hasData:false})
     }
     // @ts-ignore
     this.setData({"accountList": accountList})
@@ -335,37 +360,13 @@ Page({
       "currentMonth": month,
       "currentYear": year
     })
-    const uid = wx.getStorageSync("userId")
-    const _this = this
-    if(tid == 'all') {
-      
-    } else {
-      
-    }
+    this.getAccountAll()
   },
   // 指定类型
   changeCategory(obj:any){
     const tid = obj.detail.tid
-    const uid = wx.getStorageSync("userId")
-    const _this = this
-    if(tid == 'all') {
-      // 全部类型
-      getAccountByMonthApi(uid, this.data.currentYear, this.data.currentMonth, 1).then((res:any) => {
-        const d1 = JSON.parse(res.result)
-        getAccountByMonthApi(uid, this.data.currentYear, this.data.currentMonth, 0).then((res2:any) => {
-          const d2 = JSON.parse(res2.result)
-          _this.processData(d1.concat(d2)) 
-        })
-      })
-    } else {
-      getAccountByMonthApi(uid, this.data.currentYear, this.data.currentMonth, 1).then((res:any) => {
-        const d1 = JSON.parse(res.result)
-        getAccountByMonthApi(uid, this.data.currentYear, this.data.currentMonth, 0).then((res2:any) => {
-          const d2 = JSON.parse(res2.result)
-          _this.processData(d1.concat(d2)) 
-        })
-      })
-    }
+    this.setData({typeId: tid})
+    this.getAccountAll()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -377,6 +378,11 @@ Page({
     })
     this.initDate()
     this.getAllType()
+    const id = wx.getStorageSync("userId")
+    console.log(id)
+    getUserInfo(id).then((d:any) => {
+      wx.setStorageSync("user", d.result)
+    })
   },
 
   /**

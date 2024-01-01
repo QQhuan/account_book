@@ -1,8 +1,8 @@
 <!--pages/account_type/account_type.wxml-->
 <van-tabs bind:click="changeType"  color="white" title-active-color="#5064eb">
-  <van-tab title="收入">
-  </van-tab>
   <van-tab title="支出">
+  </van-tab>
+  <van-tab title="收入">
   </van-tab>
 </van-tabs>
 <view class="book_type_list_wrapper clearfix">

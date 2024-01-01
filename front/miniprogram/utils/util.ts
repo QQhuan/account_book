@@ -12,6 +12,15 @@ export const formatTime = (date: Date) => {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
+
+/**
+ * @description: 格式化日期
+ * @return eg:"2023/10/01 00:00:00"
+ */
+export const formatTime2 = (date: string) => {
+  const [year, month, day] = date.split('-')
+  return [year, month, day].map(formatNumber).join('-')
+}
 // 获取月日
 export const formatDate = (d: Date | string, ch:string) => {
   const date = new Date(d)
@@ -51,7 +60,7 @@ export const formatChinese = (date1: Date, type: string) => {
  * @return "10 01 00:00:00"
  * @note 不导出
  */
-const formatNumber = (n: number) => {
+const formatNumber = (n: number|string) => {
   const s = n.toString()
   return s[1] ? s : '0' + s
 }

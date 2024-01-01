@@ -1,5 +1,5 @@
 <!--components/common/detail-card/detail-card.wxml-->
-<view class="main" wx:for="{{accountList}}" wx:for-index="idx" wx:key="idx" bindtap="displayShow">
+<view wx:if="{{hasData}}" class="main" wx:for="{{accountList}}" wx:for-index="idx" wx:key="idx" bindtap="displayShow">
   <view class="head">
     <text>{{item.date}}</text>
     <text style="margin-left: 0.5rem;">{{item.weekday}}</text>
@@ -23,4 +23,6 @@
     <van-cell title="查看明细" bindtap="openDetail"/>
   </view>
 </view>
+<van-empty wx:if="{{!hasData}}" description="暂无数据" />
+
 

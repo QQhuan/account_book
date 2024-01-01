@@ -3,7 +3,11 @@ Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    user: {
+      type: Object
+    }
+  },
 
   /**
    * 组件的初始数据

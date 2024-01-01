@@ -1,0 +1,33 @@
+<!--pages/update_pw/update_pw.wxml-->
+<van-cell-group>
+  <van-field
+    value="{{ currentPassword }}"
+    type="password"
+    label="原密码"
+    placeholder="请输入密码"
+    required
+    bind:input="cpw"
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ newPassword }}"
+    type="password"
+    label="新密码"
+    placeholder="请输入密码"
+    required
+    bind:input="npw"
+    border="{{ false }}"
+  />
+  <van-field
+    value="{{ confirmNewPassword }}"
+    type="password"
+    label="确认密码"
+    placeholder="请确认密码"
+    bind:input="ccpw"
+    required
+    border="{{ false }}"
+  />
+</van-cell-group>
+<view style="padding: 0.5rem;">
+  <van-button type="primary" bind:click="submitForm" block>确认修改</van-button>
+</view>

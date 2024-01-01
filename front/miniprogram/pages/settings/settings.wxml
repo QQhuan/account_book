@@ -9,7 +9,7 @@
       <van-cell title="设置" is-link icon="setting-o"
         link-type="navigateTo"
         url="/pages/settings/settings" /> -->
-      <van-cell title="更改主页背景"
+      <van-cell title="更改个人背景"
         is-link 
         link-type="navigateTo"
         url="/pages/upload_background/upload_background" />

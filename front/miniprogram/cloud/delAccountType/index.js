@@ -16,10 +16,10 @@ exports.main = async (event, context) => {
       url: url,
       method: "POST",
       body: data,
-      json: true,
+      json: false,
       headers: {
-        // "content-Type": "text/plain",
-        "content-Type": "application/json",
+        "content-Type": "text/plain",
+        // "content-Type": "application/json",
         // "content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         // 'User-Agent': 'Request-Promise'
         // "token": event.token

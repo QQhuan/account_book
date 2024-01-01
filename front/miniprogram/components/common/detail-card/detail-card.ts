@@ -10,6 +10,10 @@ Component({
     accountList: {
       type: Array
     },
+    hasData: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**
@@ -33,7 +37,11 @@ Component({
     },
     show: false,
   },
-
+  lifetimes: {
+    ready() {
+      console.log(this.data.accountList)
+    }
+  },
   /**
    * 组件的方法列表
    */

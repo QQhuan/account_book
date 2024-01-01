@@ -10,6 +10,12 @@ Component({
       expenditureAccounts: {
         type: Array
       },
+      outputSum: {
+        type: Number
+      },
+      inputSum: {
+        type: Number
+      },
     // year: {
     //   type: Number,
     //   value: 2023 // 给个默认值2023
@@ -25,10 +31,11 @@ Component({
     minDate: new Date(1998,1,1).getTime(),
     maxDate: new Date().getTime(),
     currentDate: new Date().getTime(),
-    currentDate_year: '2023',
-    currentDate_month: '11',
+    currentDate_year: new Date().getFullYear(),
+    currentDate_month: new Date().getMonth()+1,
     show: false,
     currentChoose: '',
+    activeTypeName: '全部类型',
 
     // 类型选择面板数据
     typePlateShow: false, // 类型选择组件
@@ -53,9 +60,13 @@ Component({
     },
     // 指定类型
     changeType(e:any) {
-      console.log(e.target.dataset.id)
       const tid = e.target.dataset.id
+      const name = e.target.dataset.name
       this.triggerEvent('changeCategory', {tid})
+      this.setData({
+        typePlateShow: false,
+        activeTypeName: name
+      })
     },
     // 时间选择面板处理
     openPicker() {
@@ -71,6 +82,10 @@ Component({
       })
       const year = new Date(e.detail).getFullYear()
       const month = new Date(e.detail).getMonth()+1
+      this.setData({
+        currentDate_year: year,
+        currentDate_month: month
+      })
       this.triggerEvent('changeMonth', {year, month})
     },
     onClose() {

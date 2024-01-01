@@ -197,7 +197,7 @@ Page({
       map.forEach((val:number, key:string) => {
         list2.push({
           // @ts-ignore
-          percent: `${(val/sum).toFixed(5)*100}`,
+          percent: `${String((val/sum).toFixed(5)*100).substring(0, 5)}`,
           count: val,
           TypeName: key
         })

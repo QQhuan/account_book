@@ -1,5 +1,5 @@
 // pages/account_type/account_type.ts
-import { addAccountType as addAccountTypeApi, getAllType as getAllTypeApi } from "../../api/account_type/index";
+import { addAccountType as addAccountTypeApi, getAllType as getAllTypeApi, delAccountType as delAccountTypeApi } from "../../api/account_type/index";
 Page({
   data: {
     incomeAccounts: [],
@@ -84,10 +84,14 @@ Page({
       placeholderText: '请输入分类名称...',
       // @ts-ignore
       content: '', // 显示输入框信息
-      success: res => {
+      success: (res:any) => {
         if (res.confirm) { // 点击了确认
+          const d = {
+            "incomeOrExpenditureType": Number(this.data.incomeOrExpenditureType),
+            "accountTypeName": res.content
+          }
           // @ts-ignore
-          that.addAccountType(res.content)
+          that.addAccountType(d)
         } else {
           console.log('用户点击了取消')
         }
@@ -105,15 +109,18 @@ Page({
       deleteBtnIdx:-1
     });
   },
-  deleteBookType(e: { currentTarget: { dataset: { idx: any; }; }; }){
-    let idx = e.currentTarget.dataset.idx;
-    let item = this.data.bookTypeList[idx],
-        _this = this;
-    // @ts-ignore
-    if(item.user == ''){
-      app.showModal('暂时无法删除公用类别!');return;
-    }
-    // 删除请求
+  deleteBookType(e: { currentTarget: { dataset: { id: any; }; }; }){
+    let id = e.currentTarget.dataset.id;
+    this.delAccountType(id)
+  },
+  delAccountType(d:any) {
+    delAccountTypeApi(d).then((res:any) => {
+      // 成功通知
+      console.log(res.result)
+      // Notify({ type: 'success', message: "记账成功！"})
+      wx.showToast({title: res.result})
+      this.getAllType()
+    })
   },
   setAmtType(e:any){ // 选择收入支出
     this.setData({
@@ -121,12 +128,13 @@ Page({
     });
     this.getBookList();
   },
-  addAccountType(title:string) {
-    addAccountTypeApi(wx.getStorageSync("userId"), title).then((res:any) => {
+  addAccountType(d:any) {
+    addAccountTypeApi(d).then((res:any) => {
       // 成功通知
       console.log(res.result)
       // Notify({ type: 'success', message: "记账成功！"})
       wx.showToast({title: '新增成功！'})
+      this.getAllType()
     })
   }
 })

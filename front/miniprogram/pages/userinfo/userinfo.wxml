@@ -1,16 +1,16 @@
 <!--pages/userinfo/userinfo.wxml-->
-<view class="top-bg">
+<view class="top-bg" style="background-repeat: no-repeat;background-size: cover;background-image: url({{bg_path}});">
   <van-row style="height: max-content;">
     <van-col span="4">
       <!-- 头像 -->
-      <van-image round width="5rem" height="5rem" style="padding: 0.8rem;" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+      <van-image round width="5rem" height="5rem" style="padding: 0.8rem;" src="{{user.headPortraitPath}}" />
     </van-col>
     <van-col span="10" offset="5" class="userinfo-box">
-      <view class="username" bindtap="lookUserInfo">空腹不能吃饭</view>
+      <view class="username" bindtap="lookUserInfo">{{user.userName?user.userName:user.tel}}</view>
     </van-col>
   </van-row>
   <view class="total">
-    <total />
+    <total user="{{user}}" />
   </view>
 </view>
 <view class="main-content">

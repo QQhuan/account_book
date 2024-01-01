@@ -1,11 +1,11 @@
 <!--components/layout/banner/banner.wxml-->
 <view class="banner">
-  <van-button size="small" custom-style="left: .2rem;background-color:#7889ee;border:none;color: #f6fcfd;" icon="apps-o" bind:tap="openPlatePicker"> | 全部类型</van-button>
+  <van-button size="small" custom-style="left: .2rem;background-color:#7889ee;border:none;color: #f6fcfd;" icon="apps-o" bind:tap="openPlatePicker"> | {{activeTypeName}}</van-button>
   <view>
     <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" icon="arrow-down" bind:tap="openPicker"> {{currentDate_year}}年-{{currentDate_month}}月</van-button>
-    <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" bind:tap="return;">总收入￥{{1088.3}} 总支出￥{{2345.0}}</van-button>
+    <van-button size="small" custom-style="left: .2rem;background-color:transparent;border:none;color: #f6fcfd;" bind:tap="return;">总收入￥{{inputSum}} 总支出￥{{outputSum}}</van-button>
   </view>
-  <van-action-sheet show="{{ show }}" bind:close="onClose" bind:getuserinfo="onGetUserInfo">
+  <van-action-sheet show="{{ show }}" bind:close="onClose"  bind:getuserinfo="onGetUserInfo">
     <van-datetime-picker type="year-month" value="{{ currentDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:cancel="onCancel"
       bind:confirm="onConfirm"  bind:change="onChange" />
   </van-action-sheet>
@@ -13,11 +13,11 @@
     <view>
       <van-divider contentPosition="left">全部</van-divider>
       <view class="flexBox">
-        <van-button type="default" data-id="all" bindtap="changeType">全部类型</van-button>
+        <van-button type="default" data-name="全部类型" data-id="all" bindtap="changeType">全部类型</van-button>
       </view>
       <van-divider contentPosition="left">支出</van-divider>
       <view class="flexBox">
-        <van-button wx:for="{{expenditureAccounts}}" wx:for-index="idx" data-id="{{item.accountTypeId}}" data-income="{{item.incomeOrExpenditureType}}" wx:key="idx" type="default" bindtap="changeType">{{item.accountTypeName}}</van-button>
+        <van-button wx:for="{{expenditureAccounts}}" wx:for-index="idx" data-id="{{item.accountTypeId}}" data-name="{{item.accountTypeName}}" data-income="{{item.incomeOrExpenditureType}}" wx:key="idx" type="default" bindtap="changeType">{{item.accountTypeName}}</van-button>
       </view>
       <van-divider contentPosition="left">收入</van-divider>
       <view class="flexBox">
