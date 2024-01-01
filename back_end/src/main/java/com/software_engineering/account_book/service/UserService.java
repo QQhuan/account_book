@@ -47,4 +47,8 @@ public interface UserService {
      * @return
      */
     User getUserByUserId(String userId);
+
+    boolean update(User user);
+
+    boolean deleteByUserId(String userId);
 }

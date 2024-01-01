@@ -25,11 +25,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         );
         if (null != result) {
             if (user.getPassword().equals(result.getPassword())) {
-                return "登录成功！";
-            }else {
+                return result.getUserId();
+            } else {
+
                 return "密码错误！";
             }
-        }else{
+        } else {
             return "账号未注册！";
         }
     }
@@ -60,5 +61,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public User getUserByUserId(String userId) {
         return null;
+    }
+
+    @Override
+    public boolean update(User user) {
+        int ret = baseMapper.updateById(user);
+        if (ret == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean deleteByUserId(String userId) {
+        int ret = baseMapper.deleteById(userId);
+        if (ret == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
