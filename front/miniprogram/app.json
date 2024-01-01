@@ -15,7 +15,8 @@
     "pages/feedback/feedback",
     "pages/account_detail/account_detail",
     "pages/user_detail/user_detail",
-    "pages/account_type/account_type"
+    "pages/account_type/account_type",
+    "pages/upload_background/upload_background"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -40,8 +41,10 @@
     "van-tabs": "@vant/weapp/tabs/index",
     "van-divider": "@vant/weapp/divider/index",
     "van-sticky": "@vant/weapp/sticky/index",
+    "van-uploader": "@vant/weapp/uploader/index",
     "van-notify": "@vant/weapp/notify/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-empty": "@vant/weapp/empty/index"
   },
   "tabBar": {
     "custom": true,

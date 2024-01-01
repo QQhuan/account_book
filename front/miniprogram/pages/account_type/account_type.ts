@@ -1,5 +1,5 @@
 // pages/account_type/account_type.ts
-import { getAllType as getAllTypeApi } from "../../api/account_type/index";
+import { addAccountType as addAccountTypeApi, getAllType as getAllTypeApi } from "../../api/account_type/index";
 Page({
   data: {
     incomeAccounts: [],
@@ -77,6 +77,7 @@ Page({
   },
   // 新增分类
   addBookType(){
+    let that = this
     wx.showModal({
       title: "新增分类",
       editable: true, // 显示输入框
@@ -86,7 +87,7 @@ Page({
       success: res => {
         if (res.confirm) { // 点击了确认
           // @ts-ignore
-          console.log(res.content)// 用户输入的值
+          that.addAccountType(res.content)
         } else {
           console.log('用户点击了取消')
         }
@@ -119,5 +120,13 @@ Page({
       incomeOrExpenditureType:e.currentTarget.dataset.type
     });
     this.getBookList();
+  },
+  addAccountType(title:string) {
+    addAccountTypeApi(wx.getStorageSync("userId"), title).then((res:any) => {
+      // 成功通知
+      console.log(res.result)
+      // Notify({ type: 'success', message: "记账成功！"})
+      wx.showToast({title: '新增成功！'})
+    })
   }
 })

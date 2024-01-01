@@ -1,0 +1,4 @@
+<!--components/line_chart/index.wxml-->
+<view class="container2">
+  <ec-canvas id="{{ chartLineId }}" canvas-id="{{ canvasId }}" ec="{{ec}}" options="{{options}}" force-use-old-canvas="true"></ec-canvas>
+</view>

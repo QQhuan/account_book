@@ -1,6 +1,6 @@
 <!--pages/detail/detail.wxml-->
 <view>
-  <banner incomeAccounts="{{incomeAccounts}}" expenditureAccounts="{{expenditureAccounts}}"></banner>
+  <banner bind:changeMonth="changeMonth" bindchangeCategory="changeCategory" incomeAccounts="{{incomeAccounts}}" expenditureAccounts="{{expenditureAccounts}}"></banner>
   <detailCard bindmyevent="delTrigger" id="detail" accountList="{{accountList}}"></detailCard>
   <van-button id="sticky-button" round icon="plus" color="#5064eb" plain
     bindtap="addAccount" bindtap="openPlatePicker" bind:close="onPlateClose">记一笔</van-button>

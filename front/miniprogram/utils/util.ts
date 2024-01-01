@@ -12,6 +12,13 @@ export const formatTime = (date: Date) => {
 
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
+// 获取月日
+export const formatDate = (d: Date | string, ch:string) => {
+  const date = new Date(d)
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  return [month, day].join(ch)
+}
 
 /**
  * @description: 格式化日期
@@ -89,8 +96,8 @@ export const showModal = (title: string, content: string | any, success: any, fa
   })
 }
 
-export const getweekday = (date: Date) => {
+export const getweekday = (date: string) => {
   var weekArray = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-  var week = weekArray[new Date(date).getDay()]; // 注意此处必须是先new一个Date
+  var week = weekArray[new Date(date.replace(/\-/g,'\/')).getDay()]; // 注意此处必须是先new一个Date
   return week;
 }

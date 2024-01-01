@@ -1,16 +1,8 @@
 // pages/bar/index.ts
 // @ts-ignore
 import * as echarts from '../../ec-canvas/echarts.js'
-// @ts-ignore
-function initChart(canvas: { setChart: (arg0: any) => void; }, width: any, height: any, dpr: any) {
-  // @ts-ignore
-  const chart = echarts.init(canvas, null, {
-    width: width,
-    height: height,
-    devicePixelRatio: dpr // 像素比
-  });
-  canvas.setChart(chart);
 
+function lineSet(chart:any, xList:any, yList:any) {
   var option = {
     title: {
       // text: 'ECharts 入门示例'
@@ -37,7 +29,7 @@ function initChart(canvas: { setChart: (arg0: any) => void; }, width: any, heigh
     },
     xAxis: {
       type: 'category',
-      data: ['12.25', '12.26', '12.27', '12.28', '12.29', '12.30', '12.31'],
+      data: xList,
       boundaryGap: false,
     },
     yAxis: {
@@ -45,7 +37,7 @@ function initChart(canvas: { setChart: (arg0: any) => void; }, width: any, heigh
     },
     series: [
       {
-        data: [150, 230, 224, 218, 135, 147, 260],
+        data: yList,
         type: 'line',
         emphasis: {
           focus: 'series'
@@ -54,7 +46,6 @@ function initChart(canvas: { setChart: (arg0: any) => void; }, width: any, heigh
     ]
   };
   chart.setOption(option);
-  return chart;
 }
 Page({
 
@@ -63,24 +54,42 @@ Page({
    */
   data: {
     ec: {
-      onInit: initChart
-    }
+      lazyLoad: true
+    },
+    oneComponent: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-
+    let oneComponent = this.selectComponent('#mychart-dom-bar')
+    this.setData({
+      // @ts-ignore
+      "oneComponent": oneComponent
+    })
   },
+ initChart(xList:AnyArray, yList:AnyArray) {
+   // @ts-ignore
+   this.data.oneComponent.init((canvas: { setChart: (arg0: any) => void; }, width: any, height: any, dpr: any) => {
+     // @ts-ignore
+    const chart = echarts.init(canvas, null, {
+      width: width,
+      height: height,
+      devicePixelRatio: dpr // 像素比
+    });
+    canvas.setChart(chart);
 
+    lineSet(chart, xList, yList)
+    return chart;
+   })
+  },
   /**
    * 生命周期函数--监听页面显示
    */

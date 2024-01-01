@@ -1,6 +1,6 @@
 // pages/detail/detail.ts
 import { formatChinese, getweekday } from "../../utils/util";
-import { addAccount as addAccountApi, getAccountAll as getAccountAllApi } from "../../api/account/index";
+import { addAccount as addAccountApi, getAccountAll as getAccountAllApi, getAccountByYear as getAccountByYearApi, getAccountByMonth as getAccountByMonthApi } from "../../api/account/index";
 import { getAllType as getAllTypeApi } from "../../api/account_type/index";
 Page({
   /**
@@ -9,14 +9,20 @@ Page({
   data: {
     incomeAccounts: [], // 收入类型
     expenditureAccounts: [], // 支出
-    typePlateShow: false, // 分类面板
-    account_type_id: '', // 新增or修改时的分类id
     income_or_expenditure_type: '',
 
     // 账单数据
-    accountList: [],
+    accountList: [], //  传给detail-card组件的数据
+    // 界面展示的类型，默认展示全部
+    typeId: '',
+    // 界面展示的月份，默认当前月份
+    currentMonth: new Date().getMonth()+1,
+    // 年份
+    currentYear: new Date().getFullYear(),
 
-    /// 引入
+    /// 引入, 新增账单相关数据
+    typePlateShow: false, // 分类面板
+    account_type_id: '', // 新增or修改时的分类id
     activeType:false,
     detail:'', // 备注
     amount:'0.00',
@@ -30,17 +36,32 @@ Page({
   
 
   addAccount() {
+    let typeName = ''
+    if(this.data.income_or_expenditure_type == '0') {
+      this.data.incomeAccounts.forEach((element:{accountTypeId:string, accountTypeName:string}) => {
+        if(element.accountTypeId == this.data.account_type_id) {
+          typeName = element.accountTypeName
+        }
+      })
+    } else {
+      this.data.expenditureAccounts.forEach((element:{accountTypeId:string, accountTypeName:string}) => {
+        if(element.accountTypeId == this.data.account_type_id) {
+          typeName = element.accountTypeName
+        }
+      })
+    }
     let data = {
       "recordTime": this.data.record_time,
       "detail": this.data.detail,
       "amount": this.data.amount,
       "incomeOrExpenditureType": this.data.income_or_expenditure_type,
       "accountTypeId": this.data.account_type_id,
-      "userId": wx.getStorageSync("userId"),
-      "scrollTop": 0
+      //"accountTypeName": typeName,
+      "userId": wx.getStorageSync("userId")
     }
     console.log(data)
-    addAccountApi(data).then(() => {
+    addAccountApi(data).then((res:any) => {
+      console.log(res.result)
       // 成功通知
       // Notify({ type: 'success', message: "记账成功！"})
       wx.showToast({title: '记账成功！'})
@@ -304,6 +325,47 @@ Page({
       "accountList": aList
     })
 
+  },
+
+  // 指定月份
+  changeMonth(obj:any){
+    const year = obj.detail.year
+    const month = obj.detail.month
+    this.setData({
+      "currentMonth": month,
+      "currentYear": year
+    })
+    const uid = wx.getStorageSync("userId")
+    const _this = this
+    if(tid == 'all') {
+      
+    } else {
+      
+    }
+  },
+  // 指定类型
+  changeCategory(obj:any){
+    const tid = obj.detail.tid
+    const uid = wx.getStorageSync("userId")
+    const _this = this
+    if(tid == 'all') {
+      // 全部类型
+      getAccountByMonthApi(uid, this.data.currentYear, this.data.currentMonth, 1).then((res:any) => {
+        const d1 = JSON.parse(res.result)
+        getAccountByMonthApi(uid, this.data.currentYear, this.data.currentMonth, 0).then((res2:any) => {
+          const d2 = JSON.parse(res2.result)
+          _this.processData(d1.concat(d2)) 
+        })
+      })
+    } else {
+      getAccountByMonthApi(uid, this.data.currentYear, this.data.currentMonth, 1).then((res:any) => {
+        const d1 = JSON.parse(res.result)
+        getAccountByMonthApi(uid, this.data.currentYear, this.data.currentMonth, 0).then((res2:any) => {
+          const d2 = JSON.parse(res2.result)
+          _this.processData(d1.concat(d2)) 
+        })
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

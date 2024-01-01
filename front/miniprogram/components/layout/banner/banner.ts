@@ -51,8 +51,11 @@ Component({
         show: false
       })
     },
+    // 指定类型
     changeType(e:any) {
-      console.log(e.target.dataset)
+      console.log(e.target.dataset.id)
+      const tid = e.target.dataset.id
+      this.triggerEvent('changeCategory', {tid})
     },
     // 时间选择面板处理
     openPicker() {
@@ -66,6 +69,9 @@ Component({
       this.getTabBar().setData({
         show: true
       })
+      const year = new Date(e.detail).getFullYear()
+      const month = new Date(e.detail).getMonth()+1
+      this.triggerEvent('changeMonth', {year, month})
     },
     onClose() {
       this.setData({ show: false })

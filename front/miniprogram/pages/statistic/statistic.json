@@ -1,5 +1,6 @@
 {
+  "navigationBarTitleText": "统计报表",
   "usingComponents": {
-    "lineChart": "../bar/index"
+    "lineChart": "/components/line_chart/index"
   }
 }
