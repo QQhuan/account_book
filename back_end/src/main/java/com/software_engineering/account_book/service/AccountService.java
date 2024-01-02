@@ -12,15 +12,17 @@ import java.util.List;
  * @Created by Lvjihong
  */
 public interface AccountService {
-    String addAccount(Account account);
+    int addAccount(Account account);
 
     String updateAccount(Account account);
 
-    String deleteAccount(String accountId);
+    int deleteAccount(String accountId);
 
     List<Account> getAllAccounts(String userId);
 
     StatisticalData getAccountByYear(String userId, String year, String inOrOut);
 
     StatisticalData getAccountsByMonth(String userId, String year, String month, String inOrOut);
+
+    String getUserIdByAccountId(String accountId);
 }

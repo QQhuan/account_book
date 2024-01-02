@@ -3,6 +3,7 @@ package com.software_engineering.account_book.controller;
 import com.google.gson.Gson;
 import com.software_engineering.account_book.entity.Account;
 import com.software_engineering.account_book.service.AccountService;
+import com.software_engineering.account_book.service.UserService;
 import com.software_engineering.account_book.utils.StatisticalData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,30 +25,48 @@ import java.util.List;
 public class AccountController {
 
     @Autowired
-    private AccountService service;
+    private AccountService accountService;
+
+    @Autowired
+    private UserService userService;
     @Resource
     private Gson gson;
 
     @PostMapping("/add")
     public String addAccount(@RequestBody String temp) {
         Account account = gson.fromJson(temp, Account.class);
-        return service.addAccount(account);
+        int ret = accountService.addAccount(account);
+        if (ret == 1) {
+            userService.addTotalAmount(account.getUserId());
+            return "记账成功";
+        } else {
+
+            return "记账失败";
+        }
+
     }
 
     @PostMapping("/update")
     public String updateAccount(@RequestBody String temp) {
         Account account = gson.fromJson(temp, Account.class);
-        return service.updateAccount(account);
+        return accountService.updateAccount(account);
     }
 
     @PostMapping("/delete")
     public String deleteAccount(@RequestBody String accountId) {
-        return service.deleteAccount(accountId);
+        String userId = accountService.getUserIdByAccountId(accountId);
+        int ret = accountService.deleteAccount(accountId);
+        if (ret == 1) {
+            userService.deleteTotalAmount(userId);
+            return "删除成功";
+        } else {
+            return "删除失败";
+        }
     }
 
     @PostMapping("/get_all")
     public String getAllAccounts(@RequestBody String userId) {
-        List<Account> list = service.getAllAccounts(userId);
+        List<Account> list = accountService.getAllAccounts(userId);
         return gson.toJson(list);
     }
 
@@ -56,7 +75,7 @@ public class AccountController {
         String userId = info.split(" ")[0];
         String year = info.split(" ")[1];
         String inOrOut = info.split(" ")[2];
-        StatisticalData data = service.getAccountByYear(userId, year, inOrOut);
+        StatisticalData data = accountService.getAccountByYear(userId, year, inOrOut);
         return gson.toJson(data);
     }
 
@@ -66,7 +85,7 @@ public class AccountController {
         String year = info.split(" ")[1];
         String month = info.split(" ")[2];
         String inOrOut = info.split(" ")[3];
-        StatisticalData ret = service.getAccountsByMonth(userId, year, month, inOrOut);
+        StatisticalData ret = accountService.getAccountsByMonth(userId, year, month, inOrOut);
         return gson.toJson(ret);
     }
 }

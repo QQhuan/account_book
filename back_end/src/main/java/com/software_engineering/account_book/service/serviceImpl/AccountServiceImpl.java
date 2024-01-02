@@ -23,10 +23,8 @@ import java.util.*;
 public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> implements AccountService {
 
     @Override
-    public String addAccount(Account account) {
-
-        getBaseMapper().insert(account);
-        return "记账成功";
+    public int addAccount(Account account) {
+        return getBaseMapper().insert(account);
     }
 
     @Override
@@ -36,13 +34,12 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     }
 
     @Override
-    public String deleteAccount(String accountId) {
+    public int deleteAccount(String accountId) {
         Account result = baseMapper.selectById(accountId);
         if (null == result) {
-            return "查无此条！";
+            return 0;
         } else {
-            baseMapper.deleteById(accountId);
-            return "删除成功！";
+            return baseMapper.deleteById(accountId);
         }
     }
 
@@ -120,6 +117,11 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
             data.setTime(mapByTime);
         }
         return data;
+    }
+
+    @Override
+    public String getUserIdByAccountId(String accountId) {
+        return baseMapper.selectById(accountId).getUserId();
     }
 
 }

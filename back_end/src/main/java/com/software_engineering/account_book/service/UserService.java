@@ -13,9 +13,9 @@ public interface UserService {
      * 登录
      *
      * @param user
-     * @return 登录成功返回用户的GSON，登录失败返回“登录失败！”
+     * @return 登录成功返回200，密码错误401，用户不存在402
      */
-    String login(User user);
+    int login(User user);
 
     /**
      * 注册
@@ -51,4 +51,10 @@ public interface UserService {
     boolean update(User user);
 
     boolean deleteByUserId(String userId);
+
+    String addLoginDays(User user);
+
+    void addTotalAmount(String userId);
+
+    void deleteTotalAmount(String userId);
 }
