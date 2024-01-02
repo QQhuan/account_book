@@ -136,7 +136,18 @@ Page({
       }
     })
   },
-  updateWechatId(){},
+  updateWechatId(){
+    wx.navigateTo({url:"/pages/wechat_bind/wechat_bind"})
+    return
+    	// 登录
+      wx.login({
+        success: (res:any) => {
+          // 发送 res.code 到后台换取 openId
+          // 这里对请求操作进行封装，内部使用 wx.setStorageSync 实现了 token 的存储
+          console.log(res.code)
+        }
+      })
+  },
   updateGender(){
     this.setData({showGender: true})
   },

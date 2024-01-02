@@ -81,7 +81,8 @@
     </view>
 
     <view class="other-items vs-row vs-align-center vs-space-around">
-      <image class="other-icon" src="../../utils/imgs/login/wx.png" mode="" />
+      <image class="other-icon" bindtap="getUserProfile" src="../../utils/imgs/login/wx.png" mode="" />
+      <!-- <image class="other-icon" wx:else open-type="getUserInfo" bindgetuserinfo="wxLogin" src="../../utils/imgs/login/wx.png" mode="" /> -->
       <image class="other-icon" src="../../utils/imgs/login/qq.png" mode="" />
       <image class="other-icon" src="../../utils/imgs/login/zfb.png" mode="" />
     </view>

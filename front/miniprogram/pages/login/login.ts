@@ -1,13 +1,15 @@
 // pages/login/login.ts
 
-import { login, register } from "../../api/login/index";
+import { login, register, loginByWechat } from "../../api/login/index";
 import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+import {getOpenId} from '../../api/login/index'
 // import loginApi from '../../http/login/index'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    canIUseGetUserProfile: false, // 用于向前兼容
     cur: 0,
     telPhone: '',
     pwd: '',
@@ -34,6 +36,10 @@ Page({
     if(this.data.cur == 0) {
       login(this.data.telPhone, this.data.pwd).then( (res)=>{
         // 请求成功
+        if(res.result == '账户不存在' || res.result == '密码错误'){
+          wx.showToast({title: res.result, icon: 'none'})
+          return
+        }
         console.log(res);
         wx.setStorageSync('userId', res.result) // 本地存储用户ID
         wx.redirectTo({
@@ -81,6 +87,36 @@ Page({
    */
   onLoad() {
     wx.clearStorageSync() // 清除用户信息
+    // @ts-ignore
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      })
+    }
+  },
+  getUserProfile(e:any) {
+    const that = this
+    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    // @ts-ignore
+    wx.getUserProfile({
+      desc: '仅用于登录随手记小程序账号', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: () => {
+        getOpenId().then((d:any)=>{
+          const wechatId = d.result.openid
+          loginByWechat(wechatId).then((da:any)=>{
+            console.log(da)
+            wx.setStorageSync('userId', da.result) // 本地存储用户ID
+            wx.redirectTo({
+              url: '../index/index'
+            })
+          })
+        })
+      }
+    })
+  },
+  wxLogin: function() {
+    console.log("cannot")
   },
 
   /**

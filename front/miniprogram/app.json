@@ -17,7 +17,8 @@
     "pages/user_detail/user_detail",
     "pages/account_type/account_type",
     "pages/upload_background/upload_background",
-    "pages/update_pw/update_pw"
+    "pages/update_pw/update_pw",
+    "pages/wechat_bind/wechat_bind"
   ],
   "window": {
     "backgroundTextStyle": "light",
