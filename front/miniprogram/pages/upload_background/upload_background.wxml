@@ -1,11 +1,11 @@
 <!--pages/upload_background/upload_background.wxml-->
 <view>
   <view>
-    <text>我的背景图片：</text>
+    <text style="line-height: 80rpx;height: 80rpx;">我的背景图片：</text>
   </view>
-  <view style="height: max-content;background-color: #fff;width: 100%;height: 8rem;text-align: center;">
-      <!-- 头像 -->
-      <van-image round width="100%" height="100%" src="{{myImage}}" /> 
+  <view style="height: max-content;background-color: #fff;width: 100%;height: 400rpx;text-align: center;">
+      <!--bg image -->
+      <van-image width="100%" height="100%" src="{{bg_path}}" /> 
   </view>
   <view style="width: 50%;margin-left: 25%;margin-top: 0.5rem;">
     <button type="primary" bindtap="uploadimg">点我上传更新</button>

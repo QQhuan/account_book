@@ -12,7 +12,8 @@
       <!-- <image src="{{'/utils/icons/'+item.icon+'.png'}}"></image> -->
     </view>
     <text class="book_type_name" catchtap="hideDeleteBtn">{{item.accountTypeName}}</text>
-    <text class="drag_icon">三</text>
+    <text class="drag_icon {{deleteBtnIdx==idx?'hid':''}}" catchtap="showDeleteBtn" data-idx="{{idx}}">三</text>
+    <text class="book_type_update {{deleteBtnIdx==idx?'':'hid'}}" catchtap="updateBookType" data-id="{{item.accountTypeId}}" data-idx="{{idx}}" data-name="{{item.accountTypeName}}">修改</text>
     <text class="book_type_delete" catchtap="deleteBookType" data-id="{{item.accountTypeId}}" data-idx="{{idx}}">删除</text>
   </view>
 </view>

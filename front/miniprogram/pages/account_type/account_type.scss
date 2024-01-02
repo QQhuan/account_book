@@ -27,7 +27,7 @@ page{
   -webkit-overflow-scrolling: touch;
 }
 .book_type_list.active{
-  left:-100rpx;
+  left:-120rpx;
 }
 .delete_icon{
   margin-top:30rpx;
@@ -35,7 +35,7 @@ page{
   float:left;
   width:40rpx;
   height:40rpx;
-  background:#f00;
+  background: #3477bd;
   border-radius:50%;
 }
 .delete_icon::after{
@@ -54,6 +54,8 @@ page{
   float:left;
   width:60rpx;
   height:60rpx;
+  line-height: 60rpx;
+  font-size: 30rpx;
   background:#eee;
   border-radius:50%;
 }
@@ -79,15 +81,28 @@ page{
   font-size:40rpx;
   color:#eee;
 }
+.hid{
+  display: none;
+}
 .book_type_delete{
   float:left;
-  width:100rpx;
+  width:80rpx;
   height:100rpx;
   line-height:100rpx;
   font-size:30rpx;
   color:#fff;
   text-align:center;
   background:#EE3B3B;
+}
+.book_type_update{
+  float:left;
+  width:80rpx;
+  line-height:100rpx;
+  height:100rpx;
+  font-size:30rpx;
+  color:#fff;
+  text-align:center;
+  background:#43bd34;
 }
 
 .add_booktype_btn{

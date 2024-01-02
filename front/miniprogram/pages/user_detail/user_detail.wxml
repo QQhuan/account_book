@@ -1,26 +1,27 @@
 <!--pages/user_detail/user_detail.wxml-->
 <view class="box">
-  <view style="height: max-content;background-color: #fff;width: 100%;height: 9rem;padding-top: 1.5rem;text-align: center;">
+  <view style="height: max-content;background-color: #fff;width: 100%;height: 8.5rem;padding-top: .5rem;text-align: center;">
       <!-- 头像 -->
-      <van-image round width="6rem" height="6rem" style="padding: 0.8rem;" src="{{myImage}}" />
+      <van-image round width="6rem" height="6rem" style="padding: 0.8rem;border-color: yellow;" src="{{bg_path}}" />
       <view style="width: 50%;margin-left: 25%;">
         <van-button icon="photo-o" type="primary" size="small" bindtap="uploadimg">换头像</van-button>
       </view>
   </view>
   <view style="padding-top: .4rem;">
     <van-cell-group>
-      <van-cell title="昵称" value="{{name}}" bind:click="updateName" is-link />
-      <van-cell title="ID" value="bef098376po" />
-      <van-cell title="性别" value="{{gender}}" is-link bind:click="updateGender" />
-      <van-cell title="手机" value="{{phone}}" is-link bind:click="updatePhone"/>
-      <van-cell title="微信" value="十" is-link/>
+      <van-cell title="昵称" value="{{user.userName}}" bind:click="updateName" is-link />
+      <van-cell title="ID" value="{{user.userId}}" />
+      <van-cell title="性别" value="{{user.gender}}" is-link bind:click="updateGender" />
+      <van-cell title="手机" value="{{user.tel}}" is-link bind:click="updatePhone"/>
+      <van-cell title="个人简介" value="{{user.introduction}}" is-link bind:click="updateIntroduction"/>
+      <van-cell title="微信" value="{{user.wechatId}}" is-link bind:click="updateWechatId"/>
       <van-cell title="修改密码" is-link 
         link-type="navigateTo"
         url="/pages/update_pw/update_pw"/>
     </van-cell-group>
   </view>
   <view style="padding-top: .8rem;">
-    <view style="color: red;text-align: center;">退出登录</view>
+    <view style="color: red;text-align: center;" bindtap="logout">退出登录</view>
   </view>
   <van-popup
     show="{{ showGender }}"
@@ -30,10 +31,10 @@
     bind:close="onClose">
     <van-picker
       title="选择性别" show-toolbar
+      value-key="{{user.gender}}"
       columns="{{ columns }}"
       bind:confirm="confirm"
       bind:cancel="onClose"
     />
   </van-popup>
-  
 </view>

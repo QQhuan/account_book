@@ -1,12 +1,19 @@
 /* pages/userinfo/userinfo.wxss */
 .top-bg {
   height: 400rpx;
+  padding-top: 1rem;
   background-color: #5064eb;
 }
 .username {
   height: 100%;
   line-height: 5rem;
   color: #ffffff;
+}
+.tip {
+  position:absolute;
+  top: 4.5rem;
+  color: #ffffff;
+  font-size: .65rem;
 }
 .total {
   padding: 0.5rem 0.8rem 0.5rem 0.8rem;

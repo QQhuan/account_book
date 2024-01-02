@@ -1,7 +1,7 @@
 <!--components/userinfo/total.wxml-->
 <view class="father">
   <view>
-    <view class="count">{{user.totalDate?user.totalDate:0}}</view>
+    <view class="count">{{user.consecutiveDateNum?user.consecutiveDateNum:0}}</view>
     <view class="description">已连续打卡</view>
   </view>
   <view>

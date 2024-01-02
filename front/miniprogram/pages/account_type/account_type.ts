@@ -1,5 +1,5 @@
 // pages/account_type/account_type.ts
-import { addAccountType as addAccountTypeApi, getAllType as getAllTypeApi, delAccountType as delAccountTypeApi } from "../../api/account_type/index";
+import { addAccountType as addAccountTypeApi, getAllType as getAllTypeApi, delAccountType as delAccountTypeApi, updateAccountType as updateAccountTypeApi} from "../../api/account_type/index";
 Page({
   data: {
     incomeAccounts: [],
@@ -21,8 +21,8 @@ Page({
     
   },
   // 切换收支
-  changeType(){
-    if(this.data.incomeOrExpenditureType == "0"){
+  changeType(e:any){
+    if(e.detail.title == "支出"){
       this.setData({
         "incomeOrExpenditureType": "1",
         "bookTypeList": this.data.expenditureAccounts
@@ -33,6 +33,9 @@ Page({
         "bookTypeList": this.data.incomeAccounts
       })
     }
+    this.setData({
+      deleteBtnIdx: -1
+    })
   },
   getBookList(){//获取类型列表
     let _this = this;
@@ -73,6 +76,9 @@ Page({
           "bookTypeList": incomeAccounts
         })
       }
+      this.setData({
+        deleteBtnIdx: -1
+      })
     })
   },
   // 新增分类
@@ -92,6 +98,33 @@ Page({
           }
           // @ts-ignore
           that.addAccountType(d)
+        } else {
+          console.log('用户点击了取消')
+        }
+      }
+    })
+  },
+  updateBookType(e:any){
+    let name = e.currentTarget.dataset.name
+    const id = e.currentTarget.dataset.id
+    console.log(name)
+    let that = this
+    wx.showModal({
+      title: "修改分类",
+      editable: true, // 显示输入框
+      placeholderText: '请输入分类名称...',
+      // @ts-ignore
+      content: name, // 显示输入框信息
+      success: (res:any) => {
+        if (res.confirm) { // 点击了确认
+          const d = {
+            "accountTypeId": id,
+            "incomeOrExpenditureType": Number(this.data.incomeOrExpenditureType),
+            "accountTypeName": res.content
+          }
+          console.log(d)
+          // @ts-ignore
+          that.updateAccountType(d)
         } else {
           console.log('用户点击了取消')
         }
@@ -134,6 +167,14 @@ Page({
       console.log(res.result)
       // Notify({ type: 'success', message: "记账成功！"})
       wx.showToast({title: '新增成功！'})
+      this.getAllType()
+    })
+  },
+  updateAccountType(d:any) {
+    updateAccountTypeApi(d).then((res:any) => {
+      // 成功通知
+      console.log(res.result)
+      wx.showToast({title: '修改成功！'})
       this.getAllType()
     })
   }

@@ -3,8 +3,21 @@ import * as myFun from './utils/util'
 // @ts-ignore
 App<IAppOption>({
   globalData: {
-    active: 0
+    active: 0,
+    user: null,
+    listeners: []
   },
+  // // 注册监听器函数的方法
+  // registerListener: function (listener:Function) {
+  //   this.globalData.listeners.push(listener);
+  // },
+  // // 触发监听器函数的方法
+  // triggerListeners: function () {
+  //   var listeners = this.globalData.listeners;
+  //   for (var i = 0; i < listeners.length; i++) {
+  //     listeners[i]();
+  //   }
+  // },
   onLaunch() {
     wx.cloud.init({
       env: "cloud1-5g7ba78a12ce91dc"

@@ -70,7 +70,7 @@
   </view>
 
   <view class="vs-row vs-align-center vs-space-center margin-b100">
-    <text class="color-base font-28">忘记密码？</text>
+    <text class="color-base font-28" bindtap="onShowTel">忘记密码？</text>
   </view>
 
   <view class="other">
@@ -87,4 +87,5 @@
     </view>
   </view>
   <soure :url="url"></soure>
+  <van-dialog id="van-dialog" />
 </view>

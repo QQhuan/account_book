@@ -31,3 +31,6 @@
 <view style="padding: 0.5rem;">
   <van-button type="primary" bind:click="submitForm" block>确认修改</van-button>
 </view>
+<view class="vs-row vs-align-center vs-space-center margin-b100">
+  <text class="color-base font-28" bindtap="contact">忘记密码？请联系客服</text>
+</view>

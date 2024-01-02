@@ -1,7 +1,7 @@
 // pages/login/login.ts
 
 import { login, register } from "../../api/login/index";
-
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
 // import loginApi from '../../http/login/index'
 Page({
   /**
@@ -21,6 +21,14 @@ Page({
     } else {
       this.setData({ cur: 0 })
     }
+  },
+  onShowTel() {
+    Dialog.alert({
+      message: '客服电话\n400-880-9800\n服务时间：工作日(10:00-11:30 14:30-17:00)',
+      theme: 'round-button',
+    }).then(() => {
+      // on close
+    });
   },
   user_login: function () {
     if(this.data.cur == 0) {

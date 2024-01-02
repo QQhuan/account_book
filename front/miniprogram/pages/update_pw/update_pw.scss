@@ -1,1 +1,28 @@
 /* pages/update_pw/update_pw.wxss */
+.vs-align-center {
+  margin-top: .6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vs-row {
+  flex-direction: row;
+}
+.vs-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.margin-b100 {
+  margin-bottom: 100rpx;
+}
+
+.color-base {
+  color: #5064eb;
+}
+
+.font-28 {
+  font-style: normal;
+  font-size: 28rpx;
+  font-family: Droid Sans Fallback;
+}

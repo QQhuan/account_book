@@ -27,7 +27,7 @@
   </view>
 
   <view wx:if="{{hasData}}" class="book_list_wrapper">
-    <text class="book_list_title">{{amtType==0?'支出':'收入'}}排行榜（总{{amtType==0?'支出':'收入'}}：{{sum}}元）</text>
+    <text class="book_list_title">{{amtType==1?'支出':'收入'}}排行榜（总{{amtType==1?'支出':'收入'}}：{{sum}}元）</text>
     <view class="book_list_item" wx:for="{{chartList}}" wx:for-index="idx" wx:key="idx"
       catchtap="toChartDetail" >
       <!-- <view class="book_list_img_wrapper">

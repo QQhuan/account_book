@@ -195,14 +195,15 @@ Page({
       }
       const list2:any = []
       map.forEach((val:number, key:string) => {
+        let per = ((val/sum)*100).toFixed(2)
         list2.push({
-          // @ts-ignore
-          percent: `${String((val/sum).toFixed(5)*100).substring(0, 5)}`,
+          percent: per,
           count: val,
           TypeName: key
         })
       })
       list2?.sort((a:any, b:any) => b.percent-a.percent)
+      console.log(list2)
       // 更新lineChart表数据
       this.setData({
         // @ts-ignore
@@ -288,9 +289,10 @@ Page({
       sum += Number(type[name])
     for(let name in type) {
       console.log(name, type[name])
+      let per = ((type[name]/sum)*100).toFixed(2)
       list.push({
         // @ts-ignore
-        percent: `${(type[name]/sum).toFixed(5)*100}`,
+        percent: per,
         count: type[name],
         TypeName: name
       })

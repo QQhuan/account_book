@@ -7,6 +7,7 @@
     </van-col>
     <van-col span="10" offset="5" class="userinfo-box">
       <view class="username" bindtap="lookUserInfo">{{user.userName?user.userName:user.tel}}</view>
+      <text class="tip">上次登录：{{lastLoginDate}}</text>
     </van-col>
   </van-row>
   <view class="total">
