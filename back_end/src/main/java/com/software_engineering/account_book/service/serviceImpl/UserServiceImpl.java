@@ -125,4 +125,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setTotalAmount(user.getTotalAmount() - 1);
         baseMapper.updateById(user);
     }
+
+    @Override
+    public String loginByWechat(String openId) {
+        User user = baseMapper.selectOne(
+                new QueryWrapper<User>().eq("wechat_id", openId)
+        );
+        if (null != user) {
+            return user.getUserId();
+        }
+        return "";
+    }
 }

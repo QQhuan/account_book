@@ -57,4 +57,6 @@ public interface UserService {
     void addTotalAmount(String userId);
 
     void deleteTotalAmount(String userId);
+
+    String loginByWechat(String openId);
 }
