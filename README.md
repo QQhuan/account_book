@@ -57,10 +57,21 @@ git commit -m "feat: (end)用户记账统计折线图接口"
 
 [echarts的github地址](https://github.com/ecomfe/echarts-for-weixin)
 
-> 注：暂未安装echarts
+[iconfont-阿里巴巴矢量图标库](https://www.iconfont.cn/)
+
+# 前端
+
+基于wxml、scss、**ts**原生小程序开发+**Vantweapp**+**echart-for-wexin**，借助husky+prettier+eslint+lint-stage规范化代码格式与语法，借助**云函数**代理转发请求。
+
+![image-20240103152338816](./assets/image-20240103152338816.png)
+
+# 后端
+
+待补充
 
 # 参考UI
 
 1. 微信记账本
-   1. ​	
+2. 鲨鱼记账
+3. 喜茶等小程序
 
