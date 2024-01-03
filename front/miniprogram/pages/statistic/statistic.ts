@@ -270,10 +270,14 @@ Page({
       yVal.push(data?.time[ele])
     }
     // 年月的数据不太一样
-    if(period == 'month')
+    if(period == 'month') {
       time = time.map((item:any) => {
         return formatDate(item, '.')
       })
+      time.reverse()
+      yVal.reverse()
+    }
+      
     console.log(time, yVal)
     this.setData({
       // @ts-ignore

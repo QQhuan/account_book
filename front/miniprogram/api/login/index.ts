@@ -18,5 +18,20 @@ const register = (data:object) => {
     }
   })
 }
+const getOpenId = () => {
+  return wx.cloud.callFunction({
+    name: 'getOpenId', // 云函数名称
+  })
+}
 
-export { login, register }
+const loginByWechat = (data:object) => {
+  return wx.cloud.callFunction({
+    name: 'loginByWechat', // 云函数名称
+    data: {
+      url: 'http://8.130.98.135:6666/account_book/user/login_by_wechat',
+      info: data
+    }
+  })
+}
+
+export { login, register, getOpenId, loginByWechat }

@@ -14,7 +14,7 @@
       <van-cell title="性别" value="{{user.gender}}" is-link bind:click="updateGender" />
       <van-cell title="手机" value="{{user.tel}}" is-link bind:click="updatePhone"/>
       <van-cell title="个人简介" value="{{user.introduction}}" is-link bind:click="updateIntroduction"/>
-      <van-cell title="微信" value="{{user.wechatId}}" is-link bind:click="updateWechatId"/>
+      <van-cell title="微信" value="{{user.wechatId}}" is-link bind:click="updateWechatId" />
       <van-cell title="修改密码" is-link 
         link-type="navigateTo"
         url="/pages/update_pw/update_pw"/>

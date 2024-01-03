@@ -1,0 +1,18 @@
+<!--pages/wechat_bind/wechat_bind.wxml-->
+<view class="container vx">
+  <view wx:if="{{user.wechatId!=''}}">
+    <text>已绑定的微信ID：</text>
+    <view style="margin-top: .5rem;">{{user.wechatId}}</view>
+  </view>
+  <view wx:else>暂未绑定微信</view>
+  <view class="userinfo" style="margin-top: 2rem;">
+    <block wx:if="{{!hasUserInfo}}">
+    </block>
+    <block wx:else>
+      <van-image round width="6rem"  bindtap="bindViewTap" height="6rem" style="padding: 0.8rem;border-color: yellow;" src="{{userInfo.avatarUrl}}" />
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+    <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> {{user.wechatId==''?'绑定微信':'重新绑定'}} </button>
+      <button wx:else open-type="getUserInfo" bindgetuserinfo="getUserInfo2"> {{user.wechatId==''?'绑定微信':'重新绑定'}} </button>
+  </view>
+</view>
