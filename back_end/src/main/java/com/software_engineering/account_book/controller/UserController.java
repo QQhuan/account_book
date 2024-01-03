@@ -26,6 +26,12 @@ public class UserController {
     @Resource
     private Gson gson;
 
+    /**
+     * 电话号登录
+     *
+     * @param temp user的json
+     * @return 登录结果
+     */
     @PostMapping("/login")
     public String login(@RequestBody String temp) {
         User user = new User();
@@ -42,6 +48,24 @@ public class UserController {
         }
     }
 
+    /**
+     * 微信登录
+     *
+     * @param openId 用户的openId
+     * @return 登录结果
+     */
+    @PostMapping("/login_by_wechat")
+    public String loginByWechat(@RequestBody String openId) {
+        String userId = userService.loginByWechat(openId);
+        return userId;
+    }
+
+    /**
+     * 注册
+     *
+     * @param temp 注册信息
+     * @return 注册结果
+     */
     @PostMapping("/register")
     public String register(@RequestBody String temp) {
         User user = gson.fromJson(temp, User.class);
@@ -52,11 +76,23 @@ public class UserController {
         }
     }
 
+    /**
+     * 通过用户id得到用户信息
+     *
+     * @param userId 用户id
+     * @return 用户信息
+     */
     @PostMapping("/get_user_by_id")
     public String getUserById(@RequestBody String userId) {
         return gson.toJson(userService.getUserByUserId(userId));
     }
 
+    /**
+     * 用户更新
+     *
+     * @param temp 更新的用户信息
+     * @return 更新结果
+     */
     @PostMapping("/update")
     public String update(@RequestBody String temp) {
         User user = gson.fromJson(temp, User.class);
@@ -67,6 +103,12 @@ public class UserController {
         }
     }
 
+    /**
+     * 删除用户
+     *
+     * @param userId 用户id
+     * @return 删除的结果
+     */
     @PostMapping("/delete")
     public String deleteByUserId(@RequestBody String userId) {
         if (userService.deleteByUserId(userId)) {
